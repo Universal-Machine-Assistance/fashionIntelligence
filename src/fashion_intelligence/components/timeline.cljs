@@ -116,7 +116,8 @@
       "Una carrera dedicada a la moda, el cine y el retail"]]
     
     [:div.relative
-     [:div.absolute.left-1/2.w-1.h-full.bg-gray-300.transform.-translate-x-1/2]
+     [:div.absolute.w-1.h-full.bg-gray-300.transform
+      {:class "left-1/2 -translate-x-1/2"}]]
      [:div.space-y-0
       (for [[idx project] (map-indexed vector projects-data)]
         ^{:key (str "timeline-" idx)}
