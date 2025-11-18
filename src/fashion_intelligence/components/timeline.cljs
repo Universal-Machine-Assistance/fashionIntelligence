@@ -77,7 +77,7 @@
          [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
-     [:div.flex-1.pl-8]]])
+     [:div.flex-1.pl-8]]))
 
 (defn timeline-item-right [project idx]
   (let [colors (category-colors (:category project))]
@@ -104,7 +104,7 @@
          [:p.text-gray-600.text-sm.mb-1
           [:span.font-medium "Producción: "] (:production project)])
        (when (:role project)
-         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]]])
+         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]]))
 
 (defn timeline-section []
   [:section.py-20.px-6.bg-gray-50
