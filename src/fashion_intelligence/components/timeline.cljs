@@ -131,12 +131,13 @@
             [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
              (for [[idx img] (map-indexed vector images)]
                ^{:key (str "modal-img-" idx)}
-               [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer
+               [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer.bg-gray-100
                 {:on-click #(js/window.open img "_blank")}
                 [:img.w-full.h-full.object-cover.transition-transform.duration-300
                  {:src img
                   :alt (str (:title project) " - Imagen " (inc idx))
-                  :class "group-hover:scale-110"}]
+                  :class "group-hover:scale-110"
+                  :on-error #(set! (.-style (.-target %)) "display: none")}]
                 [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
 (defn timeline-item-left [project on-click]
