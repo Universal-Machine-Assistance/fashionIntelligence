@@ -160,7 +160,7 @@
                                   :background-position "center"})}
        (when first-image
          [:div.absolute.inset-0
-          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(0,0,0,0.7))"}}])
+          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.25), rgba(0,0,0,0.5))"}}])
        [:div.relative.z-10
        [:div.flex.items-center.justify-end.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
@@ -212,7 +212,7 @@
                                   :background-position "center"})}
        (when first-image
          [:div.absolute.inset-0
-          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(0,0,0,0.7))"}}])
+          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.25), rgba(0,0,0,0.5))"}}])
        [:div.relative.z-10
        [:div.flex.items-center.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
