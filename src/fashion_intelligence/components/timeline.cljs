@@ -139,8 +139,9 @@
                   :class "group-hover:scale-110"
                   :loading "lazy"
                   :on-error (fn [e]
-                              (let [target (.-target e)]
-                                (set! (.-style target) (clj->js {:display "none"}))
+                              (let [target (.-target e)
+                                    style (.-style target)]
+                                (set! (.-display style) "none")
                                 (js/console.error "Failed to load image:" img)))}]
                 [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
