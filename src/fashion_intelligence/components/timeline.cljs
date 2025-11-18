@@ -25,11 +25,16 @@
    "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_05.png"
    "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_06.png"])
 
+(def en-la-sombra-democracia-images
+  ["/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_01.png"
+   "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_02.png"
+   "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_03.png"])
+
 (def projects-data
   [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
    {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
    {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read" :images jenny-polanco-images}
-   {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Henry Molina" :role "Costume Director"}
+   {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Henry Molina" :role "Costume Director" :images en-la-sombra-democracia-images}
    {:year "2025" :category :film :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
    {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail"}
