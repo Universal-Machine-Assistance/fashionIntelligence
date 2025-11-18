@@ -136,7 +136,8 @@
                                   :background-size "cover"
                                   :background-position "center"})}
        (when first-image
-         [:div.absolute.inset-0.bg-gradient-to-b.from-black.from-opacity-60.via-black.via-opacity-40.to-black.to-opacity-70])
+         [:div.absolute.inset-0
+          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(0,0,0,0.7))"}}])
        [:div.relative.z-10
        [:div.flex.items-center.justify-end.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
@@ -187,7 +188,8 @@
                                   :background-size "cover"
                                   :background-position "center"})}
        (when first-image
-         [:div.absolute.inset-0.bg-gradient-to-b.from-black.from-opacity-60.via-black.via-opacity-40.to-black.to-opacity-70])
+         [:div.absolute.inset-0
+          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(0,0,0,0.7))"}}])
        [:div.relative.z-10
        [:div.flex.items-center.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
