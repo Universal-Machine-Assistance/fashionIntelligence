@@ -40,6 +40,16 @@
         :alt (:alt img)
         :class "hover:scale-105"}]])])
 
+(defn category-section [title description images on-image-click]
+  [:div.mb-16
+   [:div.text-center.mb-8
+    [:h3.font-serif.text-3xl.md:text-4xl.font-bold.mb-4.gold-accent
+     title]
+    [:p.text-lg.text-gray-600.max-w-2xl.mx-auto
+     description]]
+   (when (seq images)
+     [gallery-grid images on-image-click])])
+
 (defn clients-section []
   (let [selected-image (r/atom nil)]
     (fn []
@@ -49,20 +59,25 @@
          [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
           "Portfolio de Clientes"]
          [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
-          "Proyectos destacados y colaboraciones con líderes de la industria"]]
+          "Proyectos destacados organizados por categoría"]]
         
-        [:div.mb-16
-         [:div.bg-gray-50.p-8.md:p-12.rounded-2xl
-          [:div.text-center.mb-8
-           [:h3.font-serif.text-3xl.md:text-4xl.font-bold.mb-4.gold-accent
-            "Jenny Polanco"]
-           [:p.text-xl.text-gray-700.mb-6
-            "Diseñadora de Moda Dominicana"]
-           [:p.text-gray-600.leading-relaxed.max-w-3xl.mx-auto
-            "Colaboración en curaduría de estilo y dirección visual para colecciones exclusivas, "
-            "combinando elegancia contemporánea con la rica herencia cultural dominicana."]]
-          
-          [gallery-grid jenny-polanco-images #(reset! selected-image %)]]]
+        [category-section
+         "FASHION"
+         "Colaboraciones en diseño de moda, estilismo y dirección creativa"
+         jenny-polanco-images
+         #(reset! selected-image %)]
+        
+        [category-section
+         "FILM"
+         "Dirección de vestuario y trabajo en producciones cinematográficas y televisivas"
+         []
+         #(reset! selected-image %)]
+        
+        [category-section
+         "RETAIL"
+         "Visual merchandising, consultoría y gestión de equipos en retail"
+         []
+         #(reset! selected-image %)]
         
         [:div.text-center.mt-12
          [:p.text-gray-600.text-lg

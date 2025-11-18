@@ -16,7 +16,7 @@
      [:p.text-xl.text-gray-600.max-w-4xl.mx-auto
       "Natalie entra como "
       [:strong "creadora de frameworks"]
-      ", no solo vendedora. Transformo la intuición en "
+      ", no solo diseñadora. Transformo la intuición en "
       [:strong "sistemas probados y replicables"]
       " que aumentan tu rentabilidad sin aumentar tráfico."]]
     

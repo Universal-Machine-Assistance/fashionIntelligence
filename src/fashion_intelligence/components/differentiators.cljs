@@ -16,7 +16,7 @@
       [:h3.text-2xl.font-bold.mb-8.text-red-400
        "❌ Lo Que NO Hago"]
       [:div.space-y-4
-       [diff-item "Decoración bonita sin propósito" "red"]
+       [diff-item "Diseño bonito sin propósito" "red"]
        [diff-item "Cambios basados en tendencias sin análisis" "red"]
        [diff-item "Consultoría genérica sin medición" "red"]]]
      
@@ -26,6 +26,6 @@
       [:div.space-y-4
        [diff-item "Mido TODO: Cada cambio tiene un antes/después cuantificable" "green"]
        [diff-item "Sistematizo: Crea procesos que tu equipo puede replicar" "green"]
-       [diff-item "Optimizo: Cada decisión busca aumentar el ticket promedio" "green"]
+       [diff-item "Optimizo: Cada decisión busca aumentar el impacto" "green"]
        [diff-item "Reporto: Documentación clara del ROI de cada acción" "green"]]]]]])
 
