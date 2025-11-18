@@ -145,7 +145,7 @@
                                       style (.-style target)]
                                   (set! (.-display style) "none")
                                   (js/console.error "Failed to load image:" img "Path:" img)))}]
-                  [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]])]]])))
+                  [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])])]]]]])))
 
 (defn timeline-item-left [project on-click]
   (let [colors (category-colors (:category project))
