@@ -117,7 +117,7 @@
     
     [:div.relative
      [:div.absolute.w-1.h-full.bg-gray-300.transform
-      {:class "left-1/2 -translate-x-1/2"}]]
+      {:class "left-1/2 -translate-x-1/2"}]
      [:div.space-y-0
       (for [[idx project] (map-indexed vector projects-data)]
         ^{:key (str "timeline-" idx)}
