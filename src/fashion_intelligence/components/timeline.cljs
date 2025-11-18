@@ -126,8 +126,7 @@
             [:p.text-gray-600.text-sm
              [:span.font-semibold "Rol: "] (:role project)])]
          (when (seq images)
-           (do
-             (js/console.log "Modal images array:" images)
+           (let [_ (js/console.log "Modal images array:" images)]
              [:div.mt-6
               [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
               [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
