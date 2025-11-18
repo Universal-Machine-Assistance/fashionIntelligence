@@ -19,3 +19,11 @@ public/js/
 .DS_Store
 Thumbs.db
 
+# Large media files (use external hosting or Git LFS)
+*.mov
+*.mp4
+*.avi
+
+# Exclude ContactSheet files
+public/images/ContactSheet-*.jpg
+

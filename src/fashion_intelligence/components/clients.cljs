@@ -1,0 +1,77 @@
+(ns fashion-intelligence.components.clients
+  (:require [reagent.core :as r]))
+
+(def jenny-polanco-images
+  [{:src "/images/clients/jenny_polanco/jenny_01.png"
+    :alt "Jenny Polanco styling 1"}
+   {:src "/images/clients/jenny_polanco/jenny_02.png"
+    :alt "Jenny Polanco styling 2"}
+   {:src "/images/clients/jenny_polanco/jenny_03.png"
+    :alt "Jenny Polanco styling 3"}
+   {:src "/images/clients/jenny_polanco/jenny_04.png"
+    :alt "Jenny Polanco styling 4"}
+   {:src "/images/clients/jenny_polanco/jenny_05.png"
+    :alt "Jenny Polanco styling 5"}
+   {:src "/images/clients/jenny_polanco/jenny_06.png"
+    :alt "Jenny Polanco styling 6"}
+   {:src "/images/clients/jenny_polanco/jenny_07.png"
+    :alt "Jenny Polanco styling 7"}
+   {:src "/images/clients/jenny_polanco/jenny_08.png"
+    :alt "Jenny Polanco styling 8"}])
+
+(defn image-modal [selected-image on-close]
+  (when @selected-image
+    [:div.fixed.inset-0.z-50.flex.items-center.justify-center.bg-black.bg-opacity-90.p-4
+     {:on-click on-close}
+     [:div.relative.max-w-6xl.max-h-screen
+      [:button.absolute.top-4.right-4.text-white.text-4xl.font-light.hover:text-gray-300.z-10
+       {:on-click on-close}
+       "×"]
+      [:img.max-w-full.max-h-screen.object-contain
+       {:src (:src @selected-image)
+        :alt (:alt @selected-image)}]]]))
+
+(defn gallery-grid [images on-image-click]
+  [:div.grid.md:grid-cols-2.lg:grid-cols-4.gap-4
+   (for [img images]
+     ^{:key (:src img)}
+     [:div.relative.aspect-square.overflow-hidden.rounded-lg.cursor-pointer.card-hover
+      {:on-click #(on-image-click img)}
+      [:img.w-full.h-full.object-cover.transition-transform.duration-500
+       {:src (:src img)
+        :alt (:alt img)
+        :class "hover:scale-110"}]])])
+
+(defn clients-section []
+  (let [selected-image (r/atom nil)]
+    (fn []
+      [:section.py-20.px-6.bg-white
+       [:div.max-w-7xl.mx-auto
+        [:div.text-center.mb-16
+         [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
+          "Portfolio de Clientes"]
+         [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
+          "Proyectos destacados y colaboraciones con líderes de la industria"]]
+        
+        [:div.mb-16
+         [:div.bg-gray-50.p-8.md:p-12.rounded-2xl
+          [:div.text-center.mb-8
+           [:h3.font-serif.text-3xl.md:text-4xl.font-bold.mb-4.gold-accent
+            "Jenny Polanco"]
+           [:p.text-xl.text-gray-700.mb-6
+            "Diseñadora de Moda Dominicana"]
+           [:p.text-gray-600.leading-relaxed.max-w-3xl.mx-auto
+            "Colaboración en curaduría de estilo y dirección visual para colecciones exclusivas, "
+            "combinando elegancia contemporánea con la rica herencia cultural dominicana."]]
+          
+          [gallery-grid jenny-polanco-images #(reset! selected-image %)]]]
+        
+        [:div.text-center.mt-12
+         [:p.text-gray-600.text-lg
+          "¿Interesado en colaborar? "
+          [:a.gold-accent.font-semibold.hover:underline
+           {:href "#contacto"}
+           "Contacta conmigo"]]]]
+       
+       [image-modal selected-image #(reset! selected-image nil)]])))
+
