@@ -15,9 +15,7 @@
    {:src "/images/clients/jenny_polanco/jenny_06.png"
     :alt "Jenny Polanco styling 6"}
    {:src "/images/clients/jenny_polanco/jenny_07.png"
-    :alt "Jenny Polanco styling 7"}
-   {:src "/images/clients/jenny_polanco/jenny_08.png"
-    :alt "Jenny Polanco styling 8"}])
+    :alt "Jenny Polanco styling 7"}])
 
 (defn image-modal [selected-image on-close]
   (when @selected-image
@@ -32,15 +30,15 @@
         :alt (:alt @selected-image)}]]]))
 
 (defn gallery-grid [images on-image-click]
-  [:div.grid.md:grid-cols-2.lg:grid-cols-4.gap-4
+  [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-4
    (for [img images]
      ^{:key (:src img)}
-     [:div.relative.aspect-square.overflow-hidden.rounded-lg.cursor-pointer.card-hover
+     [:div.relative.overflow-hidden.rounded-lg.cursor-pointer.card-hover
       {:on-click #(on-image-click img)}
-      [:img.w-full.h-full.object-cover.transition-transform.duration-500
+      [:img.w-full.h-auto.object-cover.transition-transform.duration-500
        {:src (:src img)
         :alt (:alt img)
-        :class "hover:scale-110"}]])])
+        :class "hover:scale-105"}]])])
 
 (defn clients-section []
   (let [selected-image (r/atom nil)]
