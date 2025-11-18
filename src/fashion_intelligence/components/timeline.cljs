@@ -162,7 +162,7 @@
           {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
           (:role project)])
        (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "Click para ver imágenes →"])]]]]
+         [:p.text-xs.text-white.mt-3.italic.font-medium "Click para ver imágenes →"])]]]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8]]))
@@ -214,7 +214,7 @@
           {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
           (:role project)])
        (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]))
+         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]])
 
 (defn timeline-section []
   (let [selected-project (r/atom nil)]
