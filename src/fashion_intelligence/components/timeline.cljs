@@ -77,22 +77,26 @@
     (let [project @selected-project
           colors (category-colors (:category project))
           images (:images project)]
-      [:div.fixed.inset-0.z-50.flex.items-center.justify-center.bg-black.bg-opacity-90.p-4.overflow-y-auto
-       {:on-click on-close}
-       [:div.relative.max-w-5xl.w-full.bg-white.rounded-3xl.shadow-2xl.my-8
-        {:on-click #(.stopPropagation %)}
-        [:button.absolute.top-4.right-4.text-gray-400.text-4xl.font-light.hover:text-gray-600.z-10
-         {:on-click on-close}
-         "×"]
-        [:div.p-8.md:p-12
-         [:div.mb-6
-          [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-           {:class (:badge colors)}
-           (category-names (:category project))]]
-         [:h2.font-serif.text-3xl.md:text-4xl.font-bold.mb-4.text-gray-900 (:title project)]
+      [:div.fixed.inset-0.z-50.flex.items-center.justify-center.p-4.overflow-y-auto
+       {:style {:background "rgba(0, 0, 0, 0.4)" :backdrop-filter "blur(4px)"}
+        :on-click on-close}
+       [:div.relative.max-w-6xl.w-full.bg-white.rounded-2xl.shadow-xl.my-8.max-h-[90vh].overflow-hidden.flex.flex-col
+        {:on-click #(.stopPropagation %)
+         :class "animate-fade-in"}
+        [:div.flex-shrink-0.p-6.border-b.border-gray-200.bg-gray-50
+         [:div.flex.items-center.justify-between
+          [:div.flex-1
+           [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+            {:class (:badge colors)}
+            (category-names (:category project))]
+           [:h2.font-serif.text-2xl.md:text-3xl.font-bold.mt-3.text-gray-900 (:title project)]
+           [:p.text-sm.text-gray-600.mt-1 (:year project)]]
+          [:button.text-gray-400.hover:text-gray-600.transition-colors.w-8.h-8.flex.items-center.justify-center.rounded-full.hover:bg-gray-200
+           {:on-click on-close}
+           [:svg.w-5.h-5 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
+            [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]]]
+        [:div.flex-1.overflow-y-auto.p-6
          [:div.mb-6.space-y-2
-          [:p.text-gray-700
-           [:span.font-semibold "Año: "] (:year project)]
           [:p.text-gray-700
            [:span.font-semibold "Cliente: "] (:client project)]
           (when (:director project)
@@ -105,18 +109,21 @@
             [:p.text-gray-700
              [:span.font-semibold "Fotógrafa: "] (:photographer project)])
           (when (:role project)
-            [:p.text-gray-600.text-sm.mt-2
+            [:p.text-gray-600.text-sm
              [:span.font-semibold "Rol: "] (:role project)])]
          (when (seq images)
-           [:div.mt-8
-            [:h3.font-serif.text-2xl.font-bold.mb-4.text-gray-900 "Galería de Imágenes"]
-            [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-4
+           [:div.mt-6
+            [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
+            [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
              (for [[idx img] (map-indexed vector images)]
                ^{:key (str "modal-img-" idx)}
-               [:div.relative.aspect-square.overflow-hidden.rounded-lg
-                [:img.w-full.h-full.object-cover
+               [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer
+                {:on-click #(js/window.open img "_blank")}
+                [:img.w-full.h-full.object-cover.transition-transform.duration-300
                  {:src img
-                  :alt (str (:title project) " - Imagen " (inc idx))}]])]])]]])))
+                  :alt (str (:title project) " - Imagen " (inc idx))
+                  :class "group-hover:scale-110"}]
+                [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
 (defn timeline-item-left [project idx on-click]
   (let [colors (category-colors (:category project))
@@ -214,7 +221,7 @@
           {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
           (:role project)])
        (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]])
+         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]]))
 
 (defn timeline-section []
   (let [selected-project (r/atom nil)]
