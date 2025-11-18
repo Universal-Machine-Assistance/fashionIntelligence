@@ -17,6 +17,14 @@
    "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_04.png"
    "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_05.png"])
 
+(def judith-rodriguez-alicia-images
+  ["/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_01.png"
+   "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_02.png"
+   "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_03.png"
+   "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_04.png"
+   "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_05.png"
+   "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_06.png"])
+
 (def projects-data
   [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
    {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
@@ -28,7 +36,7 @@
    {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
    {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
    {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
-   {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director"}
+   {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director" :images judith-rodriguez-alicia-images}
    {:year "2022" :category :film :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer" :images are-you-afraid-images}
    {:year "2022" :category :film :title "Set Costumer" :client "The best men" :production "Studio Pinewood" :role "Set Costumer"}
    {:year "2022-2023" :category :fashion :title "Asistente Personal del Diseñador" :client "José Jhan Rodriguez" :role "Assistant"}
@@ -80,9 +88,10 @@
       [:div.fixed.inset-0.z-50.flex.items-center.justify-center.p-4.overflow-y-auto
        {:style {:background "rgba(0, 0, 0, 0.4)" :backdrop-filter "blur(4px)"}
         :on-click on-close}
-       [:div.relative.max-w-6xl.w-full.bg-white.rounded-2xl.shadow-xl.my-8.max-h-[90vh].overflow-hidden.flex.flex-col
+       [:div.relative.max-w-6xl.w-full.bg-white.rounded-2xl.shadow-xl.my-8.overflow-hidden.flex.flex-col
         {:on-click #(.stopPropagation %)
-         :class "animate-fade-in"}
+         :class "animate-fade-in"
+         :style {:max-height "90vh"}}
         [:div.flex-shrink-0.p-6.border-b.border-gray-200.bg-gray-50
          [:div.flex.items-center.justify-between
           [:div.flex-1
@@ -125,7 +134,7 @@
                   :class "group-hover:scale-110"}]
                 [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
-(defn timeline-item-left [project idx on-click]
+(defn timeline-item-left [project on-click]
   (let [colors (category-colors (:category project))
         has-images (seq (:images project))
         first-image (first (:images project))]
@@ -174,7 +183,7 @@
       {:class (:dot colors)}]
      [:div.flex-1.pl-8]]))
 
-(defn timeline-item-right [project idx on-click]
+(defn timeline-item-right [project on-click]
   (let [colors (category-colors (:category project))
         has-images (seq (:images project))
         first-image (first (:images project))]
@@ -221,7 +230,7 @@
           {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
           (:role project)])
        (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]]))
+         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]))
 
 (defn timeline-section []
   (let [selected-project (r/atom nil)]
@@ -241,8 +250,8 @@
           (for [[idx project] (map-indexed vector projects-data)]
             ^{:key (str "timeline-" idx)}
             (if (even? idx)
-              [timeline-item-left project idx #(reset! selected-project project)]
-              [timeline-item-right project idx #(reset! selected-project project)]))]]]
+              [timeline-item-left project #(reset! selected-project project)]
+              [timeline-item-right project #(reset! selected-project project)]))]]]
        
        [project-detail-modal selected-project #(reset! selected-project nil)]])))
 
