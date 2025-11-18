@@ -120,67 +120,103 @@
 
 (defn timeline-item-left [project idx on-click]
   (let [colors (category-colors (:category project))
-        has-images (seq (:images project))]
+        has-images (seq (:images project))
+        first-image (first (:images project))
+        bg-style (when first-image
+                   {:style {:background-image (str "url(" first-image ")")
+                            :background-size "cover"
+                            :background-position "center"}})]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8.text-right
-      [:div.relative.inline-block.max-w-md
-       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors) 
+      [:div.relative.inline-block.max-w-md.overflow-hidden
+       {:class (str (when-not first-image (:bg colors)) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors) 
                     (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
-        :on-click (when has-images on-click)}
+        :on-click (when has-images on-click)
+        :style (when first-image {:background-image (str "url(" first-image ")")
+                                  :background-size "cover"
+                                  :background-position "center"})}
+       (when first-image
+         [:div.absolute.inset-0.bg-gradient-to-b.from-black.from-opacity-60.via-black.via-opacity-40.to-black.to-opacity-70])
+       [:div.relative.z-10
        [:div.flex.items-center.justify-end.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-         {:class (:badge colors)}
+         {:class (if first-image "bg-white bg-opacity-90 text-gray-900" (:badge colors))}
          (category-names (:category project))]]
        [:div.mb-2
-        [:span.text-sm.font-semibold.text-gray-500.uppercase.tracking-wide (:year project)]]
-       [:h4.font-serif.text-xl.font-semibold.mb-2.text-gray-900 (:title project)]
-       [:p.text-gray-600.text-sm.mb-1
+        [:span.text-sm.font-semibold.uppercase.tracking-wide
+         {:class (if first-image "text-white" "text-gray-500")}
+         (:year project)]]
+       [:h4.font-serif.text-xl.font-semibold.mb-2
+        {:class (if first-image "text-white" "text-gray-900")}
+        (:title project)]
+       [:p.text-sm.mb-1
+        {:class (if first-image "text-white" "text-gray-600")}
         [:span.font-medium "Cliente: "] (:client project)]
        (when (:director project)
-         [:p.text-gray-600.text-sm.mb-1
+         [:p.text-sm.mb-1
+          {:class (if first-image "text-white" "text-gray-600")}
           [:span.font-medium "Director: "] (:director project)])
        (when (:production project)
-         [:p.text-gray-600.text-sm.mb-1
+         [:p.text-sm.mb-1
+          {:class (if first-image "text-white" "text-gray-600")}
           [:span.font-medium "Producción: "] (:production project)])
        (when (:role project)
-         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])
+         [:p.text-xs.mt-2.uppercase.tracking-wide
+          {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
+          (:role project)])
        (when has-images
-         [:p.text-xs.text-gray-400.mt-3.italic "Click para ver imágenes →"])]]
+         [:p.text-xs.text-white.mt-3.italic.font-medium "Click para ver imágenes →"])]]]]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8]]))
 
 (defn timeline-item-right [project idx on-click]
   (let [colors (category-colors (:category project))
-        has-images (seq (:images project))]
+        has-images (seq (:images project))
+        first-image (first (:images project))]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8
-      [:div.relative.inline-block.max-w-md
-       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors)
+      [:div.relative.inline-block.max-w-md.overflow-hidden
+       {:class (str (when-not first-image (:bg colors)) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors)
                     (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
-        :on-click (when has-images on-click)}
+        :on-click (when has-images on-click)
+        :style (when first-image {:background-image (str "url(" first-image ")")
+                                  :background-size "cover"
+                                  :background-position "center"})}
+       (when first-image
+         [:div.absolute.inset-0.bg-gradient-to-b.from-black.from-opacity-60.via-black.via-opacity-40.to-black.to-opacity-70])
+       [:div.relative.z-10
        [:div.flex.items-center.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-         {:class (:badge colors)}
+         {:class (if first-image "bg-white bg-opacity-90 text-gray-900" (:badge colors))}
          (category-names (:category project))]]
        [:div.mb-2
-        [:span.text-sm.font-semibold.text-gray-500.uppercase.tracking-wide (:year project)]]
-       [:h4.font-serif.text-xl.font-semibold.mb-2.text-gray-900 (:title project)]
-       [:p.text-gray-600.text-sm.mb-1
+        [:span.text-sm.font-semibold.uppercase.tracking-wide
+         {:class (if first-image "text-white" "text-gray-500")}
+         (:year project)]]
+       [:h4.font-serif.text-xl.font-semibold.mb-2
+        {:class (if first-image "text-white" "text-gray-900")}
+        (:title project)]
+       [:p.text-sm.mb-1
+        {:class (if first-image "text-white" "text-gray-600")}
         [:span.font-medium "Cliente: "] (:client project)]
        (when (:director project)
-         [:p.text-gray-600.text-sm.mb-1
+         [:p.text-sm.mb-1
+          {:class (if first-image "text-white" "text-gray-600")}
           [:span.font-medium "Director: "] (:director project)])
        (when (:production project)
-         [:p.text-gray-600.text-sm.mb-1
+         [:p.text-sm.mb-1
+          {:class (if first-image "text-white" "text-gray-600")}
           [:span.font-medium "Producción: "] (:production project)])
        (when (:role project)
-         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])
+         [:p.text-xs.mt-2.uppercase.tracking-wide
+          {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
+          (:role project)])
        (when has-images
-         [:p.text-xs.text-gray-400.mt-3.italic "← Click para ver imágenes"])]]]))
+         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]))
 
 (defn timeline-section []
   (let [selected-project (r/atom nil)]
