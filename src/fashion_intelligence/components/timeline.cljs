@@ -1,15 +1,32 @@
-(ns fashion-intelligence.components.timeline)
+(ns fashion-intelligence.components.timeline
+  (:require [reagent.core :as r]))
+
+(def jenny-polanco-images
+  ["/images/clients/jenny_polanco/jenny_01.png"
+   "/images/clients/jenny_polanco/jenny_02.png"
+   "/images/clients/jenny_polanco/jenny_03.png"
+   "/images/clients/jenny_polanco/jenny_04.png"
+   "/images/clients/jenny_polanco/jenny_05.png"
+   "/images/clients/jenny_polanco/jenny_06.png"
+   "/images/clients/jenny_polanco/jenny_07.png"])
+
+(def are-you-afraid-images
+  ["/images/clients/are_you_afraid_of_the_dark/are_you_afraid_01.png"
+   "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_02.png"
+   "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_03.png"
+   "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_04.png"
+   "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_05.png"])
 
 (def projects-data
   [{:year "2025" :category :fashion :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
-   {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read"}
+   {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read" :images jenny-polanco-images}
    {:year "2025" :category :film :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
    {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
    {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
    {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
    {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director"}
-   {:year "2022" :category :film :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer"}
+   {:year "2022" :category :film :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer" :images are-you-afraid-images}
    {:year "2022" :category :film :title "Set Costumer" :client "The best men" :production "Studio Pinewood" :role "Set Costumer"}
    {:year "2022-2023" :category :fashion :title "Asistente Personal del Diseñador" :client "José Jhan Rodriguez" :role "Assistant"}
    {:year "2021" :category :fashion :title "Diseño y Ejecución de Vestuario" :client "Corona Sunset" :role "Costume Designer"}
@@ -52,12 +69,61 @@
    :film "FILM"
    :retail "RETAIL"})
 
-(defn timeline-item-left [project idx]
-  (let [colors (category-colors (:category project))]
+(defn project-detail-modal [selected-project on-close]
+  (when @selected-project
+    (let [project @selected-project
+          colors (category-colors (:category project))
+          images (:images project)]
+      [:div.fixed.inset-0.z-50.flex.items-center.justify-center.bg-black.bg-opacity-90.p-4.overflow-y-auto
+       {:on-click on-close}
+       [:div.relative.max-w-5xl.w-full.bg-white.rounded-3xl.shadow-2xl.my-8
+        {:on-click #(.stopPropagation %)}
+        [:button.absolute.top-4.right-4.text-gray-400.text-4xl.font-light.hover:text-gray-600.z-10
+         {:on-click on-close}
+         "×"]
+        [:div.p-8.md:p-12
+         [:div.mb-6
+          [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+           {:class (:badge colors)}
+           (category-names (:category project))]]
+         [:h2.font-serif.text-3xl.md:text-4xl.font-bold.mb-4.text-gray-900 (:title project)]
+         [:div.mb-6.space-y-2
+          [:p.text-gray-700
+           [:span.font-semibold "Año: "] (:year project)]
+          [:p.text-gray-700
+           [:span.font-semibold "Cliente: "] (:client project)]
+          (when (:director project)
+            [:p.text-gray-700
+             [:span.font-semibold "Director: "] (:director project)])
+          (when (:production project)
+            [:p.text-gray-700
+             [:span.font-semibold "Producción: "] (:production project)])
+          (when (:photographer project)
+            [:p.text-gray-700
+             [:span.font-semibold "Fotógrafa: "] (:photographer project)])
+          (when (:role project)
+            [:p.text-gray-600.text-sm.mt-2
+             [:span.font-semibold "Rol: "] (:role project)])]
+         (when (seq images)
+           [:div.mt-8
+            [:h3.font-serif.text-2xl.font-bold.mb-4.text-gray-900 "Galería de Imágenes"]
+            [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-4
+             (for [[idx img] (map-indexed vector images)]
+               ^{:key (str "modal-img-" idx)}
+               [:div.relative.aspect-square.overflow-hidden.rounded-lg
+                [:img.w-full.h-full.object-cover
+                 {:src img
+                  :alt (str (:title project) " - Imagen " (inc idx))}]])]])]]])))
+
+(defn timeline-item-left [project idx on-click]
+  (let [colors (category-colors (:category project))
+        has-images (seq (:images project))]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8.text-right
       [:div.relative.inline-block.max-w-md
-       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors))}
+       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors) 
+                    (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
+        :on-click (when has-images on-click)}
        [:div.flex.items-center.justify-end.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
          {:class (:badge colors)}
@@ -74,20 +140,25 @@
          [:p.text-gray-600.text-sm.mb-1
           [:span.font-medium "Producción: "] (:production project)])
        (when (:role project)
-         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]
+         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])
+       (when has-images
+         [:p.text-xs.text-gray-400.mt-3.italic "Click para ver imágenes →"])]]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8]]))
 
-(defn timeline-item-right [project idx]
-  (let [colors (category-colors (:category project))]
+(defn timeline-item-right [project idx on-click]
+  (let [colors (category-colors (:category project))
+        has-images (seq (:images project))]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8
       [:div.relative.inline-block.max-w-md
-       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors))}
+       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors)
+                    (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
+        :on-click (when has-images on-click)}
        [:div.flex.items-center.mb-2
         [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
          {:class (:badge colors)}
@@ -104,24 +175,30 @@
          [:p.text-gray-600.text-sm.mb-1
           [:span.font-medium "Producción: "] (:production project)])
        (when (:role project)
-         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]]))
+         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])
+       (when has-images
+         [:p.text-xs.text-gray-400.mt-3.italic "← Click para ver imágenes"])]]]))
 
 (defn timeline-section []
-  [:section.py-20.px-6.bg-gray-50
-   [:div.max-w-6xl.mx-auto
-    [:div.text-center.mb-16
-     [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
-      "Trayectoria Profesional"]
-     [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
-      "Una carrera dedicada a la moda, el cine y el retail"]]
-    
-    [:div.relative
-     [:div.absolute.w-1.h-full.bg-gray-300.transform
-      {:class "left-1/2 -translate-x-1/2"}]
-     [:div.space-y-0
-      (for [[idx project] (map-indexed vector projects-data)]
-        ^{:key (str "timeline-" idx)}
-        (if (even? idx)
-          [timeline-item-left project idx]
-          [timeline-item-right project idx]))]]]])
+  (let [selected-project (r/atom nil)]
+    (fn []
+      [:section.py-20.px-6.bg-gray-50
+       [:div.max-w-6xl.mx-auto
+        [:div.text-center.mb-16
+         [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
+          "Trayectoria Profesional"]
+         [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
+          "Una carrera dedicada a la moda, el cine y el retail"]]
+        
+        [:div.relative
+         [:div.absolute.w-1.h-full.bg-gray-300.transform
+          {:class "left-1/2 -translate-x-1/2"}]
+         [:div.space-y-0
+          (for [[idx project] (map-indexed vector projects-data)]
+            ^{:key (str "timeline-" idx)}
+            (if (even? idx)
+              [timeline-item-left project idx #(reset! selected-project project)]
+              [timeline-item-right project idx #(reset! selected-project project)]))]]]
+       
+       [project-detail-modal selected-project #(reset! selected-project nil)]])))
 
