@@ -75,6 +75,7 @@ Each section of the page is now a separate, reusable ClojureScript component:
 - **differentiators**: What sets Natalie apart
 - **methodology**: Methodology explanation
 - **about**: About Natalie section
+- **clients**: Client portfolio showcase (Jenny Polanco)
 - **target_audience**: Target audience definition
 - **brand_promise**: Brand promise statement
 - **evidence**: Research-backed evidence
