@@ -1,0 +1,14 @@
+{:source-paths ["src"]
+ 
+ :dependencies [[reagent "1.2.0"]]
+ 
+ :dev-http {8080 "public"}
+ 
+ :builds
+ {:app
+  {:target :browser
+   :output-dir "public/js"
+   :asset-path "/js"
+   :modules {:main {:init-fn fashion-intelligence.core/init}}
+   :devtools {:after-load fashion-intelligence.core/reload}}}}
+

@@ -1,0 +1,21 @@
+{
+  "name": "fashion-intelligence",
+  "version": "1.0.0",
+  "description": "Fashion Intelligence - Natalie Rodriguez Portfolio",
+  "scripts": {
+    "dev": "shadow-cljs watch app",
+    "build": "shadow-cljs release app",
+    "clean": "rm -rf public/js .shadow-cljs",
+    "vercel-build": "npm install && shadow-cljs release app"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "shadow-cljs": "^2.26.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
