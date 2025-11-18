@@ -34,7 +34,7 @@
   [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
    {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
    {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read" :images jenny-polanco-images}
-   {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Henry Molina" :role "Costume Director" :images en-la-sombra-democracia-images}
+   {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Guillermo Molina" :role "Costume Director" :images en-la-sombra-democracia-images}
    {:year "2025" :category :film :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
    {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail"}
@@ -137,7 +137,11 @@
                  {:src img
                   :alt (str (:title project) " - Imagen " (inc idx))
                   :class "group-hover:scale-110"
-                  :on-error #(set! (.-style (.-target %)) "display: none")}]
+                  :loading "lazy"
+                  :on-error (fn [e]
+                              (let [target (.-target e)]
+                                (set! (.-style.display target) "none")
+                                (js/console.error "Failed to load image:" img)))}]
                 [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
 (defn timeline-item-left [project on-click]
