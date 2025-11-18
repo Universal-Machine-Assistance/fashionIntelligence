@@ -126,24 +126,27 @@
             [:p.text-gray-600.text-sm
              [:span.font-semibold "Rol: "] (:role project)])]
          (when (seq images)
-           [:div.mt-6
-            [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
-            [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
-             (for [[idx img] (map-indexed vector images)]
-               ^{:key (str "modal-img-" idx)}
-               [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer.bg-gray-100
-                {:on-click #(js/window.open img "_blank")}
-                [:img.w-full.h-full.object-cover.transition-transform.duration-300
-                 {:src img
-                  :alt (str (:title project) " - Imagen " (inc idx))
-                  :class "group-hover:scale-110"
-                  :loading "lazy"
-                  :on-error (fn [e]
-                              (let [target (.-target e)
-                                    style (.-style target)]
-                                (set! (.-display style) "none")
-                                (js/console.error "Failed to load image:" img)))}]
-                [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
+           (do
+             (js/console.log "Modal images array:" images)
+             [:div.mt-6
+              [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
+              [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
+               (for [[idx img] (map-indexed vector images)]
+                 ^{:key (str "modal-img-" idx "-" img)}
+                 [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer.bg-gray-200
+                  {:on-click #(js/window.open img "_blank")}
+                  [:img.w-full.h-full.object-cover.transition-transform.duration-300
+                   {:src img
+                    :alt (str (:title project) " - Imagen " (inc idx))
+                    :class "group-hover:scale-110"
+                    :loading "lazy"
+                    :on-load #(js/console.log "Image loaded successfully:" img)
+                    :on-error (fn [e]
+                                (let [target (.-target e)
+                                      style (.-style target)]
+                                  (set! (.-display style) "none")
+                                  (js/console.error "Failed to load image:" img "Path:" img)))}]
+                  [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
 (defn timeline-item-left [project on-click]
   (let [colors (category-colors (:category project))
