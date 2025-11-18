@@ -121,11 +121,7 @@
 (defn timeline-item-left [project idx on-click]
   (let [colors (category-colors (:category project))
         has-images (seq (:images project))
-        first-image (first (:images project))
-        bg-style (when first-image
-                   {:style {:background-image (str "url(" first-image ")")
-                            :background-size "cover"
-                            :background-position "center"}})]
+        first-image (first (:images project))]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8.text-right
       [:div.relative.inline-block.max-w-md.overflow-hidden
