@@ -1,92 +1,126 @@
 (ns fashion-intelligence.components.timeline)
 
 (def projects-data
-  {:fashion
-   [{:year "2025" :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
-    {:year "2025" :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read"}
-    {:year "2024" :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
-    {:year "2023" :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
-    {:year "2022-2023" :title "Asistente Personal del Diseñador" :client "José Jhan Rodriguez" :role "Assistant"}
-    {:year "2021" :title "Diseño y Ejecución de Vestuario" :client "Corona Sunset" :role "Costume Designer"}
-    {:year "2021" :title "Estilismo para Colección" :client "Polanco by José Jhan Rodriguez" :role "Fashion Stylist"}
-    {:year "2019" :title "Asistente General" :client "Diseñador José Jhan Rodriguez" :role "Assistant"}
-    {:year "2018" :title "Producción para Desfile" :client "The Colorful Collection by Jose Jhan Rodriguez" :role "Producer"}
-    {:year "2018" :title "Fitting" :client "Vin Diesel (actor)" :role "Stylist"}
-    {:year "2018" :title "Estilismo" :client "Deborah Karter" :role "Fashion Stylist"}
-    {:year "2015-2016" :title "Servicio al Cliente" :client "Tienda Formales" :role "Retail"}
-    {:year "2015-2016" :title "Estilismo" :client "Milagros German - Programa de TV Chevere Nights" :role "Fashion Stylist"}
-    {:year "2014-2015" :title "Asesora de Novias" :client "Tienda Pronovias, Blue Mall" :role "Consultant"}
-    {:year "2011" :title "Coordinación Backstage & Dresser" :client "Diseñador Custo Barcelona" :role "Coordinator"}]
-   
-   :film
-   [{:year "2025" :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
-    {:year "2024" :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
-    {:year "2023" :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
-    {:year "2023" :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director"}
-    {:year "2022" :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer"}
-    {:year "2022" :title "Set Costumer" :client "The best men" :production "Studio Pinewood" :role "Set Costumer"}
-    {:year "2021" :title "Set Costumer" :client "The Black Demon" :production "Studio Pinewood" :role "Set Costumer"}
-    {:year "2021" :title "Set Costumer" :client "Flow Calle" :director "Frank Perozo" :role "Set Costumer"}
-    {:year "2021" :title "Pre Producción" :client "Serie de TV Suriname" :production "Netflix" :role "Pre-Production"}
-    {:year "2020" :title "Directora de Vestuario" :client "Video Musical Pa' que suba" :artist "Richie Oriach" :role "Costume Director"}
-    {:year "2020" :title "Directora de Vestuario" :client "Largometraje Libélula" :director "Ronny Castillo" :role "Costume Director"}
-    {:year "2020" :title "Largometraje" :client "La otra lucha" :director "Hans Garcia" :role "Coordinator"}
-    {:year "2020" :title "Set Costumer" :client "Juego De Hombre" :director "Miguel Angel Muñiz" :role "Set Costumer"}
-    {:year "2019" :title "Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Costume Director"}
-    {:year "2019" :title "Directora de Vestuario" :client "Largometraje Maboya" :director "Felipe Esteban" :role "Costume Director"}
-    {:year "2019" :title "Directora de Vestuario" :client "Cortometraje Punto de Fuga" :director "Desiree Diaz" :role "Costume Director"}
-    {:year "2018" :title "Directora de Vestuario" :client "Programa de TV SEXSOS" :director "Ronni Castillo" :role "Costume Director"}
-    {:year "2018" :title "Set Costumer" :client "Tropical Cop Tales" :production "Studio Pinewood" :role "Set Costumer"}
-    {:year "2018" :title "Set Costumer" :client "La Maravilla" :production "Bou GROUP" :role "Set Costumer"}
-    {:year "2018" :title "Set Costumer" :client "The Long Song" :production "BBC Londres, Pinewood Studio" :role "Set Costumer"}
-    {:year "2017" :title "Directora de Vestuario" :client "Cortometrajes Madrid, España" :projects "Un País Extraño, Nuestro Laberinto, Victoria, Poena, Croquetas, Olivia, Copacabana, Portero Automático, Niña, Cenizas, Zootropo" :role "Costume Director"}
-    {:year "2017" :title "Set Costumer" :client "Rubirosa, E! tiguere" :directors "Carlos Moreno y Hugo Rodriguez" :role "Set Costumer"}
-    {:year "2016" :title "Set Costumer" :client "La Otra Penelope" :director "Viadimir Abudh" :role "Set Costumer"}
-    {:year "2015" :title "Directora de Vestuario" :client "Nostalgia, Obra Teatral" :director "Lia Briones" :award "Nominada Premios Soberanos 2016" :role "Costume Director"}]
-   
-   :retail
-   [{:year "2025" :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
-    {:year "2015-2016" :title "Servicio al Cliente" :client "Tienda Formales" :role "Retail"}
-    {:year "2014-2015" :title "Asesora de Novias" :client "Tienda Pronovias, Blue Mall" :role "Consultant"}]})
+  [{:year "2025" :category :fashion :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
+   {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read"}
+   {:year "2025" :category :film :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
+   {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
+   {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
+   {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
+   {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
+   {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director"}
+   {:year "2022" :category :film :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer"}
+   {:year "2022" :category :film :title "Set Costumer" :client "The best men" :production "Studio Pinewood" :role "Set Costumer"}
+   {:year "2022-2023" :category :fashion :title "Asistente Personal del Diseñador" :client "José Jhan Rodriguez" :role "Assistant"}
+   {:year "2021" :category :fashion :title "Diseño y Ejecución de Vestuario" :client "Corona Sunset" :role "Costume Designer"}
+   {:year "2021" :category :fashion :title "Estilismo para Colección" :client "Polanco by José Jhan Rodriguez" :role "Fashion Stylist"}
+   {:year "2021" :category :film :title "Set Costumer" :client "The Black Demon" :production "Studio Pinewood" :role "Set Costumer"}
+   {:year "2021" :category :film :title "Set Costumer" :client "Flow Calle" :director "Frank Perozo" :role "Set Costumer"}
+   {:year "2021" :category :film :title "Pre Producción" :client "Serie de TV Suriname" :production "Netflix" :role "Pre-Production"}
+   {:year "2020" :category :film :title "Directora de Vestuario" :client "Video Musical Pa' que suba" :artist "Richie Oriach" :role "Costume Director"}
+   {:year "2020" :category :film :title "Directora de Vestuario" :client "Largometraje Libélula" :director "Ronny Castillo" :role "Costume Director"}
+   {:year "2020" :category :film :title "Largometraje" :client "La otra lucha" :director "Hans Garcia" :role "Coordinator"}
+   {:year "2020" :category :film :title "Set Costumer" :client "Juego De Hombre" :director "Miguel Angel Muñiz" :role "Set Costumer"}
+   {:year "2019" :category :fashion :title "Asistente General" :client "Diseñador José Jhan Rodriguez" :role "Assistant"}
+   {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Costume Director"}
+   {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje Maboya" :director "Felipe Esteban" :role "Costume Director"}
+   {:year "2019" :category :film :title "Directora de Vestuario" :client "Cortometraje Punto de Fuga" :director "Desiree Diaz" :role "Costume Director"}
+   {:year "2018" :category :fashion :title "Producción para Desfile" :client "The Colorful Collection by Jose Jhan Rodriguez" :role "Producer"}
+   {:year "2018" :category :fashion :title "Fitting" :client "Vin Diesel (actor)" :role "Stylist"}
+   {:year "2018" :category :fashion :title "Estilismo" :client "Deborah Karter" :role "Fashion Stylist"}
+   {:year "2018" :category :film :title "Directora de Vestuario" :client "Programa de TV SEXSOS" :director "Ronni Castillo" :role "Costume Director"}
+   {:year "2018" :category :film :title "Set Costumer" :client "Tropical Cop Tales" :production "Studio Pinewood" :role "Set Costumer"}
+   {:year "2018" :category :film :title "Set Costumer" :client "La Maravilla" :production "Bou GROUP" :role "Set Costumer"}
+   {:year "2018" :category :film :title "Set Costumer" :client "The Long Song" :production "BBC Londres, Pinewood Studio" :role "Set Costumer"}
+   {:year "2017" :category :film :title "Directora de Vestuario" :client "Cortometrajes Madrid, España" :projects "Un País Extraño, Nuestro Laberinto, Victoria, Poena, Croquetas, Olivia, Copacabana, Portero Automático, Niña, Cenizas, Zootropo" :role "Costume Director"}
+   {:year "2017" :category :film :title "Set Costumer" :client "Rubirosa, E! tiguere" :directors "Carlos Moreno y Hugo Rodriguez" :role "Set Costumer"}
+   {:year "2016" :category :film :title "Set Costumer" :client "La Otra Penelope" :director "Viadimir Abudh" :role "Set Costumer"}
+   {:year "2015" :category :film :title "Directora de Vestuario" :client "Nostalgia, Obra Teatral" :director "Lia Briones" :award "Nominada Premios Soberanos 2016" :role "Costume Director"}
+   {:year "2015-2016" :category :fashion :title "Servicio al Cliente" :client "Tienda Formales" :role "Retail"}
+   {:year "2015-2016" :category :fashion :title "Estilismo" :client "Milagros German - Programa de TV Chevere Nights" :role "Fashion Stylist"}
+   {:year "2014-2015" :category :fashion :title "Asesora de Novias" :client "Tienda Pronovias, Blue Mall" :role "Consultant"}
+   {:year "2014-2015" :category :retail :title "Asesora de Novias" :client "Tienda Pronovias, Blue Mall" :role "Consultant"}
+   {:year "2011" :category :fashion :title "Coordinación Backstage & Dresser" :client "Diseñador Custo Barcelona" :role "Coordinator"}])
 
-(defn timeline-item [project category]
-  [:div.relative.pl-8.pb-8.border-l-2.border-gray-300.last:border-0
-   [:div.absolute.-left-2.w-4.h-4.bg-gray-900.rounded-full.border-2.border-white.shadow-md]
-   [:div.mb-2
-    [:span.text-sm.font-semibold.text-gray-500.uppercase.tracking-wide (:year project)]]
-   [:h4.font-serif.text-xl.font-semibold.mb-2.text-gray-900 (:title project)]
-   [:p.text-gray-600.text-sm.mb-1
-    [:span.font-medium "Cliente: "] (:client project)]
-   (when (:director project)
-     [:p.text-gray-600.text-sm.mb-1
-      [:span.font-medium "Director: "] (:director project)])
-   (when (:production project)
-     [:p.text-gray-600.text-sm.mb-1
-      [:span.font-medium "Producción: "] (:production project)])
-   (when (:role project)
-     [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])])
+(def category-colors
+  {:fashion {:bg "bg-rose-50" :border "border-rose-300" :dot "bg-rose-500" :text "text-rose-700" :badge "bg-rose-100 text-rose-800"}
+   :film {:bg "bg-blue-50" :border "border-blue-300" :dot "bg-blue-500" :text "text-blue-700" :badge "bg-blue-100 text-blue-800"}
+   :retail {:bg "bg-emerald-50" :border "border-emerald-300" :dot "bg-emerald-500" :text "text-emerald-700" :badge "bg-emerald-100 text-emerald-800"}})
 
-(defn timeline-category [category-title projects color-class]
-  [:div.mb-16
-   [:div.flex.items-center.mb-8
-    [:div.flex-1.h-px.bg-gray-300]
-    [:h3.font-serif.text-3xl.font-bold.mx-6 {:class color-class} category-title]
-    [:div.flex-1.h-px.bg-gray-300]]
-   [:div.space-y-6
-    (for [[idx project] (map-indexed vector projects)]
-      ^{:key (str category-title "-" idx)}
-      [timeline-item project category-title])]])
+(def category-names
+  {:fashion "FASHION"
+   :film "FILM"
+   :retail "RETAIL"})
+
+(defn timeline-item-left [project idx]
+  (let [colors (category-colors (:category project))]
+    [:div.relative.flex.items-center.mb-12
+     [:div.flex-1.pr-8.text-right
+      [:div.relative.inline-block.max-w-md
+       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors))}
+       [:div.flex.items-center.justify-end.mb-2
+        [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+         {:class (:badge colors)}
+         (category-names (:category project))]]
+       [:div.mb-2
+        [:span.text-sm.font-semibold.text-gray-500.uppercase.tracking-wide (:year project)]]
+       [:h4.font-serif.text-xl.font-semibold.mb-2.text-gray-900 (:title project)]
+       [:p.text-gray-600.text-sm.mb-1
+        [:span.font-medium "Cliente: "] (:client project)]
+       (when (:director project)
+         [:p.text-gray-600.text-sm.mb-1
+          [:span.font-medium "Director: "] (:director project)])
+       (when (:production project)
+         [:p.text-gray-600.text-sm.mb-1
+          [:span.font-medium "Producción: "] (:production project)])
+       (when (:role project)
+         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]
+     [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
+      {:class (:dot colors)}]
+     [:div.flex-1.pl-8]]]))
+
+(defn timeline-item-right [project idx]
+  (let [colors (category-colors (:category project))]
+    [:div.relative.flex.items-center.mb-12
+     [:div.flex-1.pr-8]
+     [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
+      {:class (:dot colors)}]
+     [:div.flex-1.pl-8
+      [:div.relative.inline-block.max-w-md
+       {:class (str (:bg colors) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors))}
+       [:div.flex.items-center.mb-2
+        [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+         {:class (:badge colors)}
+         (category-names (:category project))]]
+       [:div.mb-2
+        [:span.text-sm.font-semibold.text-gray-500.uppercase.tracking-wide (:year project)]]
+       [:h4.font-serif.text-xl.font-semibold.mb-2.text-gray-900 (:title project)]
+       [:p.text-gray-600.text-sm.mb-1
+        [:span.font-medium "Cliente: "] (:client project)]
+       (when (:director project)
+         [:p.text-gray-600.text-sm.mb-1
+          [:span.font-medium "Director: "] (:director project)])
+       (when (:production project)
+         [:p.text-gray-600.text-sm.mb-1
+          [:span.font-medium "Producción: "] (:production project)])
+       (when (:role project)
+         [:p.text-xs.text-gray-500.mt-2.uppercase.tracking-wide (:role project)])]]]))
 
 (defn timeline-section []
   [:section.py-20.px-6.bg-gray-50
-   [:div.max-w-5xl.mx-auto
+   [:div.max-w-6xl.mx-auto
     [:div.text-center.mb-16
      [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
       "Trayectoria Profesional"]
      [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
       "Una carrera dedicada a la moda, el cine y el retail"]]
     
-    [timeline-category "FASHION" (:fashion projects-data) "text-gray-900"]
-    [timeline-category "FILM" (:film projects-data) "text-gray-900"]
-    [timeline-category "RETAIL" (:retail projects-data) "text-gray-900"]]])
+    [:div.relative
+     [:div.absolute.left-1/2.w-1.h-full.bg-gray-300.transform.-translate-x-1/2]
+     [:div.space-y-0
+      (for [[idx project] (map-indexed vector projects-data)]
+        ^{:key (str "timeline-" idx)}
+        (if (even? idx)
+          [timeline-item-left project idx]
+          [timeline-item-right project idx]))]]]])
 
