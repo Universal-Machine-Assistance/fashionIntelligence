@@ -17,6 +17,18 @@
    {:src "/images/clients/jenny_polanco/jenny_07.png"
     :alt "Jenny Polanco styling 7"}])
 
+(def are-you-afraid-images
+  [{:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_01.png"
+    :alt "Are You Afraid of the Dark - Set Costumer 1"}
+   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_02.png"
+    :alt "Are You Afraid of the Dark - Set Costumer 2"}
+   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_03.png"
+    :alt "Are You Afraid of the Dark - Set Costumer 3"}
+   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_04.png"
+    :alt "Are You Afraid of the Dark - Set Costumer 4"}
+   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_05.png"
+    :alt "Are You Afraid of the Dark - Set Costumer 5"}])
+
 (defn image-modal [selected-image on-close]
   (when @selected-image
     [:div.fixed.inset-0.z-50.flex.items-center.justify-center.bg-black.bg-opacity-90.p-4
@@ -70,7 +82,7 @@
         [category-section
          "FILM"
          "Dirección de vestuario y trabajo en producciones cinematográficas y televisivas"
-         []
+         are-you-afraid-images
          #(reset! selected-image %)]
         
         [category-section
