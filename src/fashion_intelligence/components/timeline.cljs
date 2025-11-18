@@ -140,7 +140,7 @@
                   :loading "lazy"
                   :on-error (fn [e]
                               (let [target (.-target e)]
-                                (set! (.-style.display target) "none")
+                                (set! (.-style target) (clj->js {:display "none"}))
                                 (js/console.error "Failed to load image:" img)))}]
                 [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])]]])))
 
@@ -258,9 +258,10 @@
           {:class "left-1/2 -translate-x-1/2"}]
          [:div.space-y-0
           (for [[idx project] (map-indexed vector projects-data)]
-            ^{:key (str "timeline-" idx)}
             (if (even? idx)
+              ^{:key (str "timeline-left-" idx "-" (:title project))}
               [timeline-item-left project #(reset! selected-project project)]
+              ^{:key (str "timeline-right-" idx "-" (:title project))}
               [timeline-item-right project #(reset! selected-project project)]))]]]
        
        [project-detail-modal selected-project #(reset! selected-project nil)]])))
