@@ -6,6 +6,9 @@ public/js/
 # Clojure
 .cpcache/
 .nrepl-port
+.clj-kondo/.cache/
+.lsp/
+.portal/
 
 # IDE
 .idea/
