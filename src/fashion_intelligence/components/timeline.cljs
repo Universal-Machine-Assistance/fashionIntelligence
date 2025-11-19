@@ -90,7 +90,7 @@
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
    {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail"}
    {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
-   {:year "2024" :category :film :title "El año del dragon" :client "Bou GROUP" :role "Costume Director" :images el-ano-del-dragon-images}
+   {:year "2024" :category :film :title "El año del dragon" :client "Bou GROUP" :role "Asistente de vestuario" :images el-ano-del-dragon-images}
    {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
    {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
    {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director" :images judith-rodriguez-alicia-images}
@@ -351,25 +351,44 @@
       [project-card project colors has-images first-image on-click false]]]))
 
 (defn timeline-section []
-  (let [selected-project (r/atom nil)]
+  (let [selected-project (r/atom nil)
+        expanded (r/atom false)
+        total-projects (count projects-data)
+        first-quarter-count (Math/ceil (/ total-projects 4))]
     (fn []
-      [:section.py-20.px-6.bg-gray-50
-       [:div.max-w-6xl.mx-auto
-        [:div.text-center.mb-16
-         [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
-          "Trayectoria Profesional"]
-         [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
-          "Una carrera dedicada a la moda, el cine y el retail"]]
-        
-        [:div.relative
-         [:div.absolute.w-1.h-full.bg-gray-300.transform
-          {:class "left-1/2 -translate-x-1/2"}]
-         [:div.space-y-0
-          (for [[idx project] (map-indexed vector projects-data)]
-            (if (even? idx)
-              ^{:key (str "timeline-left-" idx "-" (:title project))}
-              [timeline-item-left project #(reset! selected-project project)]
-              ^{:key (str "timeline-right-" idx "-" (:title project))}
-              [timeline-item-right project #(reset! selected-project project)]))]]]
-       
-       [project-detail-modal selected-project #(reset! selected-project nil)]])))
+      (let [projects-to-show (if @expanded
+                                projects-data
+                                (take first-quarter-count projects-data))]
+        [:section.py-20.px-6.bg-gray-50
+         [:div.max-w-6xl.mx-auto
+          [:div.text-center.mb-16
+           [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
+            "Trayectoria Profesional"]
+           [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
+            "Una carrera dedicada a la moda, el cine y el retail"]]
+          
+          [:div.relative
+           [:div.absolute.w-1.bg-gray-300.transform
+            {:class "left-1/2 -translate-x-1/2"
+             :style {:height (if @expanded "100%" (str (* first-quarter-count 200) "px"))}}]
+           [:div.space-y-0
+            (for [[idx project] (map-indexed vector projects-to-show)]
+              (if (even? idx)
+                ^{:key (str "timeline-left-" idx "-" (:title project))}
+                [timeline-item-left project #(reset! selected-project project)]
+                ^{:key (str "timeline-right-" idx "-" (:title project))}
+                [timeline-item-right project #(reset! selected-project project)]))]]
+          
+          (when (not @expanded)
+            [:div.text-center.mt-8
+             [:button.px-8.py-3.bg-gray-800.text-white.rounded-lg.font-semibold.transition-all.duration-300.hover:bg-gray-900.hover:shadow-lg
+              {:on-click #(reset! expanded true)}
+              "Ver más"]])
+          
+          (when @expanded
+            [:div.text-center.mt-8
+             [:button.px-8.py-3.bg-gray-800.text-white.rounded-lg.font-semibold.transition-all.duration-300.hover:bg-gray-900.hover:shadow-lg
+              {:on-click #(reset! expanded false)}
+              "Ver menos"]])]
+         
+         [project-detail-modal selected-project #(reset! selected-project nil)]]))))

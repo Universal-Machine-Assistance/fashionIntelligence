@@ -11,7 +11,7 @@
     [:h2.font-serif.text-4xl.md:text-5xl.font-bold.text-center.mb-16.gradient-text
      "Sobre Natalie Rodríguez"]
     
-    [:div.grid.md:grid-cols-2.gap-12.items-center
+    [:div.grid.md:grid-cols-2.gap-12.items-center.mb-16
      [:div
       [:p.text-lg.text-gray-700.mb-6.leading-relaxed
        "Natalie Rodríguez del Rosario es una "
@@ -38,5 +38,29 @@
         "Crear ropa vendible para el mercado"]
        [expertise-item
         "Fashion Stylist"
-        "Coordinar looks para impacto visual inmediato"]]]]]])
+        "Coordinar looks para impacto visual inmediato"]]]]
+    
+    [:div.max-w-4xl.mx-auto.mt-16
+     [:div.bg-white.p-8.rounded-2xl.shadow-sm
+      [:h3.text-3xl.font-serif.font-bold.mb-8.text-center.text-gray-900
+       "Mi Filosofía"]
+      
+      [:div.space-y-8
+       [:div
+        [:h4.text-xl.font-bold.mb-4.text-gray-800
+         "1. ¿Por qué hago ropa?"]
+        [:p.text-lg.text-gray-700.leading-relaxed
+         "Creo en manifestar la belleza interior con tu exterior, vistiendo la esencia del ser. Embelleciendo al cuerpo, volviéndolos uno."]]
+       
+       [:div
+        [:h4.text-xl.font-bold.mb-4.text-gray-800
+         "2. ¿Por qué diseño?"]
+        [:p.text-lg.text-gray-700.leading-relaxed
+         "Diseño porque me gusta lo auténtico, el singular del individuo, en que de una forma u otra cada ser es único, me gustaría encontrar en cada diseño la pieza especial para cada ser."]]
+       
+       [:div
+        [:h4.text-xl.font-bold.mb-4.text-gray-800
+         "3. ¿Qué quiero dejarle al cliente cuando se ponen en mis manos?"]
+        [:p.text-lg.text-gray-700.leading-relaxed
+         "Identidad propia, cómodo con su cuerpo, con su esencia."]]]]]]])
 

@@ -4,6 +4,7 @@
    [fashion-intelligence.components.problem :refer [problem-section]]
    [fashion-intelligence.components.solution :refer [solution-section]]
    [fashion-intelligence.components.services :refer [services-section]]
+   [fashion-intelligence.components.personal-services :refer [personal-services-section]]
    [fashion-intelligence.components.differentiators :refer [differentiators-section]]
    [fashion-intelligence.components.methodology :refer [methodology-section]]
    [fashion-intelligence.components.about :refer [about-section]]
@@ -30,5 +31,6 @@
    [brand-promise-section]
    [evidence-section]
    [cta-section]
+   [personal-services-section]
    [footer-component]])
 
