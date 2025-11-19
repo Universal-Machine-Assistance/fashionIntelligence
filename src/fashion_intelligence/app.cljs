@@ -18,6 +18,7 @@
 (defn app []
   [:div.font-sans.text-gray-800.antialiased.bg-white
    [hero-component]
+   [timeline-section]
    [problem-section]
    [solution-section]
    [services-section]
@@ -25,7 +26,6 @@
    [methodology-section]
    [about-section]
    [clients-section]
-   [timeline-section]
    [target-audience-section]
    [brand-promise-section]
    [evidence-section]

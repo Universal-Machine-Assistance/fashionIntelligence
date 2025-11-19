@@ -68,8 +68,21 @@
    "/images/clients/la_otra_lucha/la_otra_lucha_07.png"
    "/images/clients/la_otra_lucha/la_otra_lucha_08.png"])
 
+(def alo-images
+  ["/images/clients/alo/alo_01.jpeg"
+   "/images/clients/alo/alo_02.jpeg"
+   "/images/clients/alo/alo_03.jpeg"
+   "/images/clients/alo/alo_04.jpeg"
+   "/images/clients/alo/alo_05.jpeg"
+   "/images/clients/alo/alo_06.jpeg"
+   "/images/clients/alo/alo_07.jpeg"
+   "/images/clients/alo/alo_08.jpeg"
+   "/images/clients/alo/alo_09.jpeg"
+   "/images/clients/alo/alo_10.jpeg"
+   "/images/clients/alo/alo_11.jpeg"])
+
 (def projects-data
-  [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
+  [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader" :images alo-images}
    {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
    {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read" :images jenny-polanco-images}
    {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Guillermo Molina" :role "Costume Director" :images en-la-sombra-democracia-images}
