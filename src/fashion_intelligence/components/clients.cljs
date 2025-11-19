@@ -17,17 +17,31 @@
    {:src "/images/clients/jenny_polanco/jenny_07.png"
     :alt "Jenny Polanco styling 7"}])
 
-(def are-you-afraid-images
-  [{:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_01.png"
-    :alt "Are You Afraid of the Dark - Set Costumer 1"}
+(def film-portfolio-images
+  [{:src "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_03.png"
+    :alt "En la Sombra de la Democracia - Costume Director"}
+   {:src "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_02.png"
+    :alt "En la Sombra de la Democracia - Costume Director"}
+   {:src "/images/clients/el_ano_del_dragon/el_ano_del_dragon_01.png"
+    :alt "El año del dragon - Costume Director"}
+   {:src "/images/clients/el_ano_del_dragon/el_ano_del_dragon_02.png"
+    :alt "El año del dragon - Costume Director"}
+   {:src "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_01.png"
+    :alt "Video Musical Alicia - Costume Director"}
+   {:src "/images/clients/judith_rodriguez_alma/judith_rodriguez_alma_02.png"
+    :alt "Video Musical Alicia - Costume Director"}
+   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_01.png"
+    :alt "Are You Afraid of the Dark - Set Costumer"}
    {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_02.png"
-    :alt "Are You Afraid of the Dark - Set Costumer 2"}
-   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_03.png"
-    :alt "Are You Afraid of the Dark - Set Costumer 3"}
-   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_04.png"
-    :alt "Are You Afraid of the Dark - Set Costumer 4"}
-   {:src "/images/clients/are_you_afraid_of_the_dark/are_you_afraid_05.png"
-    :alt "Are You Afraid of the Dark - Set Costumer 5"}])
+    :alt "Are You Afraid of the Dark - Set Costumer"}
+   {:src "/images/clients/la_otra_lucha/la_otra_lucha_01.png"
+    :alt "La otra lucha - Coordinator"}
+   {:src "/images/clients/la_otra_lucha/la_otra_lucha_02.png"
+    :alt "La otra lucha - Coordinator"}
+   {:src "/images/clients/a_tiro_limpio/a_tiro_limpio_01.png"
+    :alt "A Tiro Limpio - Costume Director"}
+   {:src "/images/clients/a_tiro_limpio/a_tiro_limpio_02.png"
+    :alt "A Tiro Limpio - Costume Director"}])
 
 (defn image-modal [selected-image on-close]
   (when @selected-image
@@ -82,7 +96,7 @@
         [category-section
          "FILM"
          "Dirección de vestuario y trabajo en producciones cinematográficas y televisivas"
-         are-you-afraid-images
+         film-portfolio-images
          #(reset! selected-image %)]
         
         [category-section

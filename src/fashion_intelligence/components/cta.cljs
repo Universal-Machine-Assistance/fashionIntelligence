@@ -15,11 +15,11 @@
      [:p.text-gray-300.mb-6
       "Evaluación inicial de tu operación actual y oportunidades identificadas"]
      [:a.inline-block.bg-white.text-gray-900.px-8.py-4.rounded-lg.text-lg.font-semibold
-      {:href "mailto:natalie@fashionintelligence.com"
+      {:href "mailto:rdcostume.nr@gmail.com"
        :class "hover:bg-gray-100 transition-colors duration-300"}
       "Solicitar Diagnóstico"]]
     
     [:div.text-sm.text-gray-400
-     [:p "natalie@fashionintelligence.com | +1 (829) 555-0123"]
+     [:p "rdcostume.nr@gmail.com | +1 (829) 555-0123"]
      [:p "Santo Domingo, República Dominicana"]]]])
 

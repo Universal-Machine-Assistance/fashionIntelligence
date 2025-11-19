@@ -94,7 +94,7 @@
    {:year "2020" :category :film :title "Largometraje" :client "La otra lucha" :director "Hans Garcia" :role "Coordinator" :images la-otra-lucha-images}
    {:year "2020" :category :film :title "Set Costumer" :client "Juego De Hombre" :director "Miguel Angel Muñiz" :role "Set Costumer"}
    {:year "2019" :category :fashion :title "Asistente General" :client "Diseñador José Jhan Rodriguez" :role "Assistant"}
-   {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Costume Director" :images a-tiro-limpio-images}
+   {:year "2019" :category :film :title "Co-Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Co-Costume Director" :images a-tiro-limpio-images}
    {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje Maboya" :director "Felipe Esteban" :role "Costume Director"}
    {:year "2019" :category :film :title "Directora de Vestuario" :client "Cortometraje Punto de Fuga" :director "Desiree Diaz" :role "Costume Director"}
    {:year "2018" :category :fashion :title "Producción para Desfile" :client "The Colorful Collection by Jose Jhan Rodriguez" :role "Producer"}
@@ -197,11 +197,12 @@
                        parent (.-parentElement target)]
                    (js/console.error "Failed to load image:" img "Path:" img "Error:" (.-error target))
                    (set! (.-display (.-style parent)) "none")))}]
-   [:div.absolute.inset-0.pointer-events-none.transition-all.duration-300.flex.items-center.justify-center
+   [:div.absolute.inset-0.pointer-events-none.transition-all.duration-300.flex.flex-col.items-center.justify-center
     {:style {:background "transparent"}}
-    [:div.absolute.inset-0.bg-black.opacity-0.group-hover:opacity-20.transition-opacity]
-    [:span.text-white.text-sm.font-medium.opacity-0.group-hover:opacity-100.transition-opacity.relative.z-10
-     "Ver ampliada"]]])
+    [:div.absolute.inset-0.bg-black.opacity-0.group-hover:opacity-30.transition-opacity]
+    [:div.relative.z-10.text-center.px-4.opacity-0.group-hover:opacity-100.transition-opacity
+     [:p.text-white.text-sm.font-semibold.mb-1 title]
+     [:p.text-white.text-xs.font-medium "Ver ampliada"]]]])
 
 (defn image-gallery [images title selected-image-idx-atom]
   (when (seq images)
