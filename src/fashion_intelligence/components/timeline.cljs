@@ -1,5 +1,12 @@
 (ns fashion-intelligence.components.timeline
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [clojure.string :as str]))
+
+(defn encode-url-path [path]
+  (->> path
+       (str/split #"/")
+       (map #(js/encodeURIComponent %))
+       (str/join "/")))
 
 (def jenny-polanco-images
   ["/images/clients/jenny_polanco/jenny_01.png"
@@ -30,6 +37,37 @@
    "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_02.png"
    "/images/clients/en_la_sombra_de_la_democracia/en_la_sombra_de_la_democracia_03.png"])
 
+(def el-ano-del-dragon-images
+  ["/images/clients/el_ano_del_dragon/el_ano_del_dragon_01.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_02.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_03.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_04.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_05.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_06.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_07.png"
+   "/images/clients/el_ano_del_dragon/el_ano_del_dragon_08.png"])
+
+(def a-tiro-limpio-images
+  ["/images/clients/a_tiro_limpio/a_tiro_limpio_01.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_02.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_03.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_04.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_05.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_06.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_07.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_08.png"
+   "/images/clients/a_tiro_limpio/a_tiro_limpio_09.png"])
+
+(def la-otra-lucha-images
+  ["/images/clients/la_otra_lucha/la_otra_lucha_01.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_02.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_03.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_04.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_05.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_06.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_07.png"
+   "/images/clients/la_otra_lucha/la_otra_lucha_08.png"])
+
 (def projects-data
   [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader"}
    {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
@@ -39,6 +77,7 @@
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
    {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail"}
    {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
+   {:year "2024" :category :film :title "El año del dragon" :client "Bou GROUP" :role "Costume Director" :images el-ano-del-dragon-images}
    {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
    {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
    {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director" :images judith-rodriguez-alicia-images}
@@ -49,13 +88,13 @@
    {:year "2021" :category :fashion :title "Estilismo para Colección" :client "Polanco by José Jhan Rodriguez" :role "Fashion Stylist"}
    {:year "2021" :category :film :title "Set Costumer" :client "The Black Demon" :production "Studio Pinewood" :role "Set Costumer"}
    {:year "2021" :category :film :title "Set Costumer" :client "Flow Calle" :director "Frank Perozo" :role "Set Costumer"}
-   {:year "2021" :category :film :title "Pre Producción" :client "Serie de TV Suriname" :production "Netflix" :role "Pre-Production"}
+   {:year "2021" :category :film :title "Narco-Saints" :client "Netflix" :production "Netflix" :role "Pre-Production"}
    {:year "2020" :category :film :title "Directora de Vestuario" :client "Video Musical Pa' que suba" :artist "Richie Oriach" :role "Costume Director"}
    {:year "2020" :category :film :title "Directora de Vestuario" :client "Largometraje Libélula" :director "Ronny Castillo" :role "Costume Director"}
-   {:year "2020" :category :film :title "Largometraje" :client "La otra lucha" :director "Hans Garcia" :role "Coordinator"}
+   {:year "2020" :category :film :title "Largometraje" :client "La otra lucha" :director "Hans Garcia" :role "Coordinator" :images la-otra-lucha-images}
    {:year "2020" :category :film :title "Set Costumer" :client "Juego De Hombre" :director "Miguel Angel Muñiz" :role "Set Costumer"}
    {:year "2019" :category :fashion :title "Asistente General" :client "Diseñador José Jhan Rodriguez" :role "Assistant"}
-   {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Costume Director"}
+   {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje A Tiro Limpio" :director "Jean Guerra" :role "Costume Director" :images a-tiro-limpio-images}
    {:year "2019" :category :film :title "Directora de Vestuario" :client "Largometraje Maboya" :director "Felipe Esteban" :role "Costume Director"}
    {:year "2019" :category :film :title "Directora de Vestuario" :client "Cortometraje Punto de Fuga" :director "Desiree Diaz" :role "Costume Director"}
    {:year "2018" :category :fashion :title "Producción para Desfile" :client "The Colorful Collection by Jose Jhan Rodriguez" :role "Producer"}
@@ -85,67 +124,195 @@
    :film "FILM"
    :retail "RETAIL"})
 
+(defn image-viewer-modal [selected-image-idx images on-close]
+  (when (and @selected-image-idx (seq images))
+    (let [current-idx @selected-image-idx
+          current-img (nth images current-idx)
+          total (count images)
+          next-img (fn [] (reset! selected-image-idx (mod (inc current-idx) total)))
+          prev-img (fn [] (reset! selected-image-idx (mod (dec current-idx) total)))
+          handle-keydown (fn [e]
+                           (case (.-key e)
+                             "ArrowRight" (do (.preventDefault e) (next-img))
+                             "ArrowLeft" (do (.preventDefault e) (prev-img))
+                             "Escape" (on-close)
+                             nil))]
+      (r/create-class
+       {:component-did-mount
+        (fn []
+          (.addEventListener js/document "keydown" handle-keydown))
+        :component-will-unmount
+        (fn []
+          (.removeEventListener js/document "keydown" handle-keydown))
+        :reagent-render
+        (fn []
+          [:div.fixed.inset-0.flex.items-center.justify-center.p-4
+           {:style {:background "rgba(0, 0, 0, 0.9)" :backdrop-filter "blur(8px)" :z-index 60}
+            :on-click on-close
+            :tab-index -1}
+           [:div.relative.max-w-7xl.w-full.flex.items-center.justify-center
+            {:on-click #(.stopPropagation %)
+             :style {:max-height "95vh"}}
+            (when (> total 1)
+              [:button.absolute.left-4.text-white.hover:text-gray-300.transition-colors.w-12.h-12.flex.items-center.justify-center.rounded-full.bg-black.bg-opacity-50.hover:bg-opacity-70.z-10
+               {:on-click (fn [e] (.stopPropagation e) (prev-img))}
+               [:svg.w-6.h-6 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
+                [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M15 19l-7-7 7-7"}]]])
+            [:img.w-full.h-auto.object-contain.rounded-lg.shadow-2xl
+             {:src current-img
+              :alt (str "Imagen " (inc current-idx) " de " total)
+              :on-click on-close
+              :class "cursor-zoom-out"
+              :style {:max-height "95vh"}}]
+            (when (> total 1)
+              [:button.absolute.right-4.text-white.hover:text-gray-300.transition-colors.w-12.h-12.flex.items-center.justify-center.rounded-full.bg-black.bg-opacity-50.hover:bg-opacity-70.z-10
+               {:on-click (fn [e] (.stopPropagation e) (next-img))}
+               [:svg.w-6.h-6 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
+                [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M9 5l7 7-7 7"}]]])
+            [:button.absolute.top-4.right-4.text-white.hover:text-gray-300.transition-colors.w-10.h-10.flex.items-center.justify-center.rounded-full.bg-black.bg-opacity-50.hover:bg-opacity-70
+             {:on-click on-close}
+             [:svg.w-6.h-6 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
+              [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]
+            (when (> total 1)
+              [:div.absolute.bottom-4.text-white.text-sm.bg-black.bg-opacity-50.px-4.py-2.rounded-full
+               {:style {:left "50%" :transform "translateX(-50%)"}}
+               (str (inc current-idx) " / " total)])]])}))))
+
+(defn image-gallery-item [img title idx on-image-click]
+  [:div.relative.overflow-hidden.rounded-lg.group.cursor-pointer
+   {:on-click #(on-image-click idx)
+    :style {:background "#f3f4f6" :margin-bottom "1rem"}}
+   [:img.w-full.h-auto.transition-transform.duration-300
+    {:src img
+     :alt (str title " - Imagen " (inc idx))
+     :class "group-hover:scale-105"
+     :loading "lazy"
+     :style {:display "block" :width "100%" :height "auto" :object-fit "contain" :min-height "100px"}
+     :on-load (fn [e]
+                (js/console.log "Image loaded successfully:" img)
+                (let [target (.-target e)]
+                  (set! (.-style.display target) "block")))
+     :on-error (fn [e]
+                 (let [target (.-target e)
+                       parent (.-parentElement target)]
+                   (js/console.error "Failed to load image:" img "Path:" img "Error:" (.-error target))
+                   (set! (.-display (.-style parent)) "none")))}]
+   [:div.absolute.inset-0.pointer-events-none.transition-all.duration-300.flex.items-center.justify-center
+    {:style {:background "transparent"}}
+    [:div.absolute.inset-0.bg-black.opacity-0.group-hover:opacity-20.transition-opacity]
+    [:span.text-white.text-sm.font-medium.opacity-0.group-hover:opacity-100.transition-opacity.relative.z-10
+     "Ver ampliada"]]])
+
+(defn image-gallery [images title selected-image-idx-atom]
+  (when (seq images)
+    (let [_ (js/console.log "Modal images array:" images "Count:" (count images))]
+      [:div.mt-6
+       [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
+       [:div
+        {:style {:column-count "3" :column-gap "1rem"}}
+        (doall
+         (for [[idx img] (map-indexed vector images)]
+           (do
+             (js/console.log "Rendering image" idx ":" img)
+             ^{:key (str "modal-img-" idx "-" img)}
+             [:div
+              {:style {:display "inline-block" :width "100%" :margin-bottom "1rem" :break-inside "avoid"}}
+              [image-gallery-item img title idx #(reset! selected-image-idx-atom %)]])))]])))
+
+(defn project-info [project]
+  [:div.mb-6.space-y-2
+   [:p.text-gray-700
+    [:span.font-semibold "Cliente: "] (:client project)]
+   (when (:director project)
+     [:p.text-gray-700
+      [:span.font-semibold "Director: "] (:director project)])
+   (when (:production project)
+     [:p.text-gray-700
+      [:span.font-semibold "Producción: "] (:production project)])
+   (when (:photographer project)
+     [:p.text-gray-700
+      [:span.font-semibold "Fotógrafa: "] (:photographer project)])
+   (when (:role project)
+     [:p.text-gray-600.text-sm
+      [:span.font-semibold "Rol: "] (:role project)])])
+
 (defn project-detail-modal [selected-project on-close]
-  (when @selected-project
-    (let [project @selected-project
-          colors (category-colors (:category project))
-          images (:images project)]
-      [:div.fixed.inset-0.z-50.flex.items-center.justify-center.p-4.overflow-y-auto
-       {:style {:background "rgba(0, 0, 0, 0.4)" :backdrop-filter "blur(4px)"}
-        :on-click on-close}
-       [:div.relative.max-w-6xl.w-full.bg-white.rounded-2xl.shadow-xl.my-8.overflow-hidden.flex.flex-col
-        {:on-click #(.stopPropagation %)
-         :class "animate-fade-in"
-         :style {:max-height "90vh"}}
-        [:div.flex-shrink-0.p-6.border-b.border-gray-200.bg-gray-50
-         [:div.flex.items-center.justify-between
-          [:div.flex-1
-           [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-            {:class (:badge colors)}
-            (category-names (:category project))]
-           [:h2.font-serif.text-2xl.md:text-3xl.font-bold.mt-3.text-gray-900 (:title project)]
-           [:p.text-sm.text-gray-600.mt-1 (:year project)]]
-          [:button.text-gray-400.hover:text-gray-600.transition-colors.w-8.h-8.flex.items-center.justify-center.rounded-full.hover:bg-gray-200
-           {:on-click on-close}
-           [:svg.w-5.h-5 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
-            [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]]]
-        [:div.flex-1.overflow-y-auto.p-6
-         [:div.mb-6.space-y-2
-          [:p.text-gray-700
-           [:span.font-semibold "Cliente: "] (:client project)]
-          (when (:director project)
-            [:p.text-gray-700
-             [:span.font-semibold "Director: "] (:director project)])
-          (when (:production project)
-            [:p.text-gray-700
-             [:span.font-semibold "Producción: "] (:production project)])
-          (when (:photographer project)
-            [:p.text-gray-700
-             [:span.font-semibold "Fotógrafa: "] (:photographer project)])
-          (when (:role project)
-            [:p.text-gray-600.text-sm
-             [:span.font-semibold "Rol: "] (:role project)])]
-         (when (seq images)
-           (let [_ (js/console.log "Modal images array:" images)]
-             [:div.mt-6
-              [:h3.font-serif.text-xl.font-bold.mb-4.text-gray-900 "Galería"]
-              [:div.grid.md:grid-cols-2.lg:grid-cols-3.gap-3
-               (for [[idx img] (map-indexed vector images)]
-                 ^{:key (str "modal-img-" idx "-" img)}
-                 [:div.relative.aspect-square.overflow-hidden.rounded-lg.group.cursor-pointer.bg-gray-200
-                  {:on-click #(js/window.open img "_blank")}
-                  [:img.w-full.h-full.object-cover.transition-transform.duration-300
-                   {:src img
-                    :alt (str (:title project) " - Imagen " (inc idx))
-                    :class "group-hover:scale-110"
-                    :loading "lazy"
-                    :on-load #(js/console.log "Image loaded successfully:" img)
-                    :on-error (fn [e]
-                                (let [target (.-target e)
-                                      style (.-style target)]
-                                  (set! (.-display style) "none")
-                                  (js/console.error "Failed to load image:" img "Path:" img)))}]
-                  [:div.absolute.inset-0.bg-black.bg-opacity-0.group-hover:bg-opacity-20.transition-all.duration-300]])]])])]]]]])))
+  (let [selected-image-idx (r/atom nil)]
+    (fn []
+      (when @selected-project
+        (let [project @selected-project
+              colors (category-colors (:category project))
+              images (:images project)]
+          [:<>
+           [:div.fixed.inset-0.z-50.flex.items-center.justify-center.p-4.overflow-y-auto
+            {:style {:background "rgba(0, 0, 0, 0.4)" :backdrop-filter "blur(4px)"}
+             :on-click on-close}
+            [:div.relative.max-w-6xl.w-full.bg-white.rounded-2xl.shadow-xl.my-8.overflow-hidden.flex.flex-col
+             {:on-click #(.stopPropagation %)
+              :class "animate-fade-in"
+              :style {:max-height "90vh"}}
+             [:div.flex-shrink-0.p-6.border-b.border-gray-200.bg-gray-50
+              [:div.flex.items-center.justify-between
+               [:div.flex-1
+                [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+                 {:class (:badge colors)}
+                 (category-names (:category project))]
+                [:h2.font-serif.text-2xl.md:text-3xl.font-bold.mt-3.text-gray-900 (:title project)]
+                [:p.text-sm.text-gray-600.mt-1 (:year project)]]
+               [:button.text-gray-400.hover:text-gray-600.transition-colors.w-8.h-8.flex.items-center.justify-center.rounded-full.hover:bg-gray-200
+                {:on-click on-close}
+                [:svg.w-5.h-5 {:fill "none" :stroke "currentColor" :view-box "0 0 24 24"}
+                 [:path {:stroke-linecap "round" :stroke-linejoin "round" :stroke-width "2" :d "M6 18L18 6M6 6l12 12"}]]]]]
+             [:div.flex-1.overflow-y-auto.p-6
+              [project-info project]
+              [image-gallery images (:title project) selected-image-idx]]]]
+           [image-viewer-modal selected-image-idx images #(reset! selected-image-idx nil)]])))))
+
+(defn project-card-content [project colors first-image is-left]
+  [:div.relative.z-10
+   [:div.flex.items-center.mb-2
+    {:class (if is-left "justify-end" "justify-start")}
+    [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
+     {:class (if first-image "bg-white bg-opacity-90 text-gray-900" (:badge colors))}
+     (category-names (:category project))]]
+   [:div.mb-2
+    [:span.text-sm.font-semibold.uppercase.tracking-wide
+     {:class (if first-image "text-white" "text-gray-500")}
+     (:year project)]]
+   [:h4.font-serif.text-xl.font-semibold.mb-2
+    {:class (if first-image "text-white" "text-gray-900")}
+    (:title project)]
+   [:p.text-sm.mb-1
+    {:class (if first-image "text-white" "text-gray-600")}
+    [:span.font-medium "Cliente: "] (:client project)]
+   (when (:director project)
+     [:p.text-sm.mb-1
+      {:class (if first-image "text-white" "text-gray-600")}
+      [:span.font-medium "Director: "] (:director project)])
+   (when (:production project)
+     [:p.text-sm.mb-1
+      {:class (if first-image "text-white" "text-gray-600")}
+      [:span.font-medium "Producción: "] (:production project)])
+   (when (:role project)
+     [:p.text-xs.mt-2.uppercase.tracking-wide
+      {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
+      (:role project)])
+   (when (seq (:images project))
+     [:p.text-xs.text-white.mt-3.italic.font-medium
+      (if is-left "Click para ver imágenes →" "← Click para ver imágenes")])])
+
+(defn project-card [project colors has-images first-image on-click is-left]
+  [:div.relative.inline-block.max-w-md.overflow-hidden
+   {:class (str (when-not first-image (:bg colors)) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors) 
+                (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
+    :on-click (when has-images on-click)
+    :style (when first-image {:background-image (str "url(" first-image ")")
+                              :background-size "cover"
+                              :background-position "center"})}
+   (when first-image
+     [:div.absolute.inset-0
+      {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.25), rgba(0,0,0,0.5))"}}])
+   [project-card-content project colors first-image is-left]])
 
 (defn timeline-item-left [project on-click]
   (let [colors (category-colors (:category project))
@@ -153,45 +320,7 @@
         first-image (first (:images project))]
     [:div.relative.flex.items-center.mb-12
      [:div.flex-1.pr-8.text-right
-      [:div.relative.inline-block.max-w-md.overflow-hidden
-       {:class (str (when-not first-image (:bg colors)) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors) 
-                    (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
-        :on-click (when has-images on-click)
-        :style (when first-image {:background-image (str "url(" first-image ")")
-                                  :background-size "cover"
-                                  :background-position "center"})}
-       (when first-image
-         [:div.absolute.inset-0
-          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.25), rgba(0,0,0,0.5))"}}])
-       [:div.relative.z-10
-       [:div.flex.items-center.justify-end.mb-2
-        [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-         {:class (if first-image "bg-white bg-opacity-90 text-gray-900" (:badge colors))}
-         (category-names (:category project))]]
-       [:div.mb-2
-        [:span.text-sm.font-semibold.uppercase.tracking-wide
-         {:class (if first-image "text-white" "text-gray-500")}
-         (:year project)]]
-       [:h4.font-serif.text-xl.font-semibold.mb-2
-        {:class (if first-image "text-white" "text-gray-900")}
-        (:title project)]
-       [:p.text-sm.mb-1
-        {:class (if first-image "text-white" "text-gray-600")}
-        [:span.font-medium "Cliente: "] (:client project)]
-       (when (:director project)
-         [:p.text-sm.mb-1
-          {:class (if first-image "text-white" "text-gray-600")}
-          [:span.font-medium "Director: "] (:director project)])
-       (when (:production project)
-         [:p.text-sm.mb-1
-          {:class (if first-image "text-white" "text-gray-600")}
-          [:span.font-medium "Producción: "] (:production project)])
-       (when (:role project)
-         [:p.text-xs.mt-2.uppercase.tracking-wide
-          {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
-          (:role project)])
-       (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "Click para ver imágenes →"])]]]
+      [project-card project colors has-images first-image on-click true]]
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8]]))
@@ -205,45 +334,7 @@
      [:div.flex-shrink-0.w-4.h-4.rounded-full.border-4.border-white.shadow-lg.z-10
       {:class (:dot colors)}]
      [:div.flex-1.pl-8
-      [:div.relative.inline-block.max-w-md.overflow-hidden
-       {:class (str (when-not first-image (:bg colors)) " p-6 rounded-2xl shadow-lg border-l-4 " (:border colors)
-                    (when has-images " cursor-pointer hover:shadow-xl transition-all duration-300"))
-        :on-click (when has-images on-click)
-        :style (when first-image {:background-image (str "url(" first-image ")")
-                                  :background-size "cover"
-                                  :background-position "center"})}
-       (when first-image
-         [:div.absolute.inset-0
-          {:style {:background "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.25), rgba(0,0,0,0.5))"}}])
-       [:div.relative.z-10
-       [:div.flex.items-center.mb-2
-        [:span.text-xs.font-semibold.uppercase.tracking-wide.px-3.py-1.rounded-full
-         {:class (if first-image "bg-white bg-opacity-90 text-gray-900" (:badge colors))}
-         (category-names (:category project))]]
-       [:div.mb-2
-        [:span.text-sm.font-semibold.uppercase.tracking-wide
-         {:class (if first-image "text-white" "text-gray-500")}
-         (:year project)]]
-       [:h4.font-serif.text-xl.font-semibold.mb-2
-        {:class (if first-image "text-white" "text-gray-900")}
-        (:title project)]
-       [:p.text-sm.mb-1
-        {:class (if first-image "text-white" "text-gray-600")}
-        [:span.font-medium "Cliente: "] (:client project)]
-       (when (:director project)
-         [:p.text-sm.mb-1
-          {:class (if first-image "text-white" "text-gray-600")}
-          [:span.font-medium "Director: "] (:director project)])
-       (when (:production project)
-         [:p.text-sm.mb-1
-          {:class (if first-image "text-white" "text-gray-600")}
-          [:span.font-medium "Producción: "] (:production project)])
-       (when (:role project)
-         [:p.text-xs.mt-2.uppercase.tracking-wide
-          {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
-          (:role project)])
-       (when has-images
-         [:p.text-xs.text-white.mt-3.italic.font-medium "← Click para ver imágenes"])]]]]))
+      [project-card project colors has-images first-image on-click false]]]))
 
 (defn timeline-section []
   (let [selected-project (r/atom nil)]
@@ -268,4 +359,3 @@
               [timeline-item-right project #(reset! selected-project project)]))]]]
        
        [project-detail-modal selected-project #(reset! selected-project nil)]])))
-
