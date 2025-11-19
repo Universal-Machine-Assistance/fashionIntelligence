@@ -235,8 +235,6 @@
 
 (defn project-info [project]
   [:div.mb-6.space-y-2
-   [:p.text-gray-700
-    [:span.font-semibold "Cliente: "] (:client project)]
    (when (:director project)
      [:p.text-gray-700
       [:span.font-semibold "Director: "] (:director project)])
@@ -296,9 +294,6 @@
    [:h4.font-serif.text-xl.font-semibold.mb-2
     {:class (if first-image "text-white" "text-gray-900")}
     (:title project)]
-   [:p.text-sm.mb-1
-    {:class (if first-image "text-white" "text-gray-600")}
-    [:span.font-medium "Cliente: "] (:client project)]
    (when (:director project)
      [:p.text-sm.mb-1
       {:class (if first-image "text-white" "text-gray-600")}
@@ -353,33 +348,69 @@
 (defn timeline-section []
   (let [selected-project (r/atom nil)
         expanded (r/atom false)
+        selected-filter (r/atom nil)
         total-projects (count projects-data)
         first-quarter-count (Math/ceil (/ total-projects 4))]
     (fn []
-      (let [projects-to-show (if @expanded
-                                projects-data
-                                (take first-quarter-count projects-data))]
+      (let [filtered-projects (if @selected-filter
+                                 (filter #(= (:category %) @selected-filter) projects-data)
+                                 projects-data)
+            projects-to-show (if @expanded
+                                filtered-projects
+                                (take first-quarter-count filtered-projects))
+            visible-count (count filtered-projects)]
         [:section.py-20.px-6.bg-gray-50
          [:div.max-w-6xl.mx-auto
           [:div.text-center.mb-16
            [:h2.font-serif.text-4xl.md:text-5xl.font-bold.mb-6.gradient-text
             "Trayectoria Profesional"]
-           [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
+           [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light.mb-8
             "Una carrera dedicada a la moda, el cine y el retail"]]
           
-          [:div.relative
-           [:div.absolute.w-1.bg-gray-300.transform
-            {:class "left-1/2 -translate-x-1/2"
-             :style {:height (if @expanded "100%" (str (* first-quarter-count 200) "px"))}}]
-           [:div.space-y-0
-            (for [[idx project] (map-indexed vector projects-to-show)]
-              (if (even? idx)
-                ^{:key (str "timeline-left-" idx "-" (:title project))}
-                [timeline-item-left project #(reset! selected-project project)]
-                ^{:key (str "timeline-right-" idx "-" (:title project))}
-                [timeline-item-right project #(reset! selected-project project)]))]]
+          [:div.flex.flex-wrap.justify-center.gap-3.mb-12
+           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+            {:class (if (nil? @selected-filter)
+                      "bg-gray-900 text-white hover:bg-gray-800"
+                      "bg-gray-200 text-gray-700 hover:bg-gray-300")
+             :on-click #(reset! selected-filter nil)}
+            "Todos"]
+           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+            {:class (if (= @selected-filter :fashion)
+                      "bg-rose-500 text-white hover:bg-rose-600"
+                      "bg-rose-100 text-rose-700 hover:bg-rose-200")
+             :on-click #(reset! selected-filter :fashion)}
+            "Fashion"]
+           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+            {:class (if (= @selected-filter :film)
+                      "bg-blue-500 text-white hover:bg-blue-600"
+                      "bg-blue-100 text-blue-700 hover:bg-blue-200")
+             :on-click #(reset! selected-filter :film)}
+            "Film"]
+           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+            {:class (if (= @selected-filter :retail)
+                      "bg-emerald-500 text-white hover:bg-emerald-600"
+                      "bg-emerald-100 text-emerald-700 hover:bg-emerald-200")
+             :on-click #(reset! selected-filter :retail)}
+            "Retail"]]
           
-          (when (not @expanded)
+          (when (zero? visible-count)
+            [:div.text-center.py-12
+             [:p.text-gray-500.text-lg "No hay proyectos en esta categoría."]])
+          
+          (when (pos? visible-count)
+            [:div.relative
+             [:div.absolute.w-1.bg-gray-300.transform
+              {:class "left-1/2 -translate-x-1/2"
+               :style {:height (if @expanded "100%" (str (* (min first-quarter-count visible-count) 200) "px"))}}]
+             [:div.space-y-0
+              (for [[idx project] (map-indexed vector projects-to-show)]
+                (if (even? idx)
+                  ^{:key (str "timeline-left-" idx "-" (:title project))}
+                  [timeline-item-left project #(reset! selected-project project)]
+                  ^{:key (str "timeline-right-" idx "-" (:title project))}
+                  [timeline-item-right project #(reset! selected-project project)]))]])
+          
+          (when (and (not @expanded) (> visible-count first-quarter-count))
             [:div.text-center.mt-8
              [:button.px-8.py-3.bg-gray-800.text-white.rounded-lg.font-semibold.transition-all.duration-300.hover:bg-gray-900.hover:shadow-lg
               {:on-click #(reset! expanded true)}
