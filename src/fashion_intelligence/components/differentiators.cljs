@@ -32,7 +32,7 @@
        "✅ Lo Que SÍ Hago"]
       [:div.space-y-4
        [diff-item "Mido TODO: Cada cambio tiene un antes/después cuantificable" "#e0f7f4" "#2d6a5a"]
-       [diff-item "Sistematizo: Crea procesos que tu equipo puede replicar" "#e0f7f4" "#2d6a5a"]
+       [diff-item "Sistematizo: Creo procesos que tu equipo puede replicar" "#e0f7f4" "#2d6a5a"]
        [diff-item "Optimizo: Cada decisión busca aumentar el impacto" "#e0f7f4" "#2d6a5a"]
        [diff-item "Reporto: Documentación clara del ROI de cada acción" "#e0f7f4" "#2d6a5a"]]]]]])
 

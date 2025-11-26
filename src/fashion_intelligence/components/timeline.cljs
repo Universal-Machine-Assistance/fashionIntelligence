@@ -81,20 +81,67 @@
    "/images/clients/alo/alo_10.jpeg"
    "/images/clients/alo/alo_11.jpeg"])
 
+(def pororo-images
+  ["/images/clients/pororo/pororo_02.jpeg"
+   "/images/clients/pororo/pororo_03.jpeg"
+   "/images/clients/pororo/pororo_04.jpeg"
+   "/images/clients/pororo/pororo_05.jpeg"
+   "/images/clients/pororo/pororo_06.jpeg"
+   "/images/clients/pororo/pororo_07.jpeg"
+   "/images/clients/pororo/pororo_08.jpeg"
+   "/images/clients/pororo/pororo_09.jpeg"
+   "/images/clients/pororo/pororo_10.jpeg"
+   "/images/clients/pororo/pororo_11.jpeg"
+   "/images/clients/pororo/pororo_12.jpeg"
+   "/images/clients/pororo/pororo_13.jpeg"
+   "/images/clients/pororo/pororo_14.jpeg"])
+
+(def jumbo-images
+  ["/images/clients/jumbo/jumbo_00.png"
+   "/images/clients/jumbo/jumbo_01.png"
+   "/images/clients/jumbo/jumbo_02.png"
+   "/images/clients/jumbo/jumbo_03.png"
+   "/images/clients/jumbo/jumbo_04.png"
+   "/images/clients/jumbo/jumbo_05.png"])
+
+(def coka-chika-images
+  ["/images/clients/coka_chicas/crazy_chicks_01.png"
+   "/images/clients/coka_chicas/crazy_chicks_02.png"
+   "/images/clients/coka_chicas/crazy_chicks_03.png"
+   "/images/clients/coka_chicas/crazy_chicks_04.png"
+   "/images/clients/coka_chicas/crazy_chicks_05.png"])
+
+(def chris-lebron-images
+  ["/images/clients/Chris_Lebron_bandidos/Chris Lebron_Bandido 01.png"
+   "/images/clients/Chris_Lebron_bandidos/Chris Lebron _Bandido 02.png"
+   "/images/clients/Chris_Lebron_bandidos/Chris Lebron _Bandido 03.png"
+   "/images/clients/Chris_Lebron_bandidos/Chris Lebron_Bandido 04.png"
+   "/images/clients/Chris_Lebron_bandidos/Chris Lebron_Bandido 05.png"
+   "/images/clients/Chris_Lebron_bandidos/Chris Lebron_Bandido 06.png"])
+
+(def hotel-cocaine-images
+  ["/images/clients/hotel_cocaine/Hotel_cocaine_01.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_02.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_03.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_04.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_05.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_06.png"
+   "/images/clients/hotel_cocaine/Hotel_cocaine_07.png"])
+
 (def projects-data
   [{:year "2025" :category :retail :title "Visual Merchandising y Team Leader" :client "Alo Yoga Blue Mall" :role "Team Leader" :images alo-images}
-   {:year "2025" :category :retail :title "Catalogo Navidad" :client "La Sirena" :role "Stylist"}
+   {:year "2025" :category :retail :title "Catalogo Navidad \"La Sirena\"" :client "La Sirena" :role "Stylist"}
    {:year "2025" :category :fashion :title "Estilismo para Photoshoot" :client "Jenny Polanco" :role "Fashion Stylist" :photographer "Karla Read" :images jenny-polanco-images}
    {:year "2025" :category :film :title "En la Sombra de la Democracia" :client "En la Sombra de la Democracia" :director "Guillermo Molina" :role "Costume Director" :images en-la-sombra-democracia-images}
-   {:year "2025" :category :film :title "Asistente de Vestuario" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant"}
+   {:year "2025" :category :film :title "Chris Lebron Video Musical Bandido" :client "Video Musical Chris Lebron" :director "Carlos Zouain" :role "Assistant" :images chris-lebron-images}
    {:year "2024" :category :fashion :title "Backstage Desfile" :client "José Jhan - Premios a la Moda Dominicana" :role "Stylist"}
-   {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail"}
-   {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer"}
+   {:year "2024" :category :retail :title "Jumbo Madre Catalogo" :client "Jumbo Madre" :role "Retail" :images jumbo-images}
+   {:year "2024" :category :film :title "Buyer" :client "Película Coka Chika" :production "Bien ou Bien" :role "Buyer" :images coka-chika-images}
    {:year "2024" :category :film :title "El año del dragon" :client "Bou GROUP" :role "Asistente de vestuario" :images el-ano-del-dragon-images}
-   {:year "2023" :category :fashion :title "Estilismo para Banda Musical" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist"}
-   {:year "2023" :category :film :title "Buyer" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer"}
+   {:year "2023" :category :fashion :title "Estilismo para Banda Pororó" :client "Pororó - Corona Sunset Punta Cana" :role "Fashion Stylist" :images pororo-images}
+   {:year "2023" :category :film :title "Hotel Cocaine" :client "Serie TV Hotel Cocaine" :production "MGM" :role "Buyer" :images hotel-cocaine-images}
    {:year "2023" :category :film :title "Directora de Vestuario" :client "Video Musical Alicia" :artist "Judith Rodriguez" :role "Costume Director" :images judith-rodriguez-alicia-images}
-   {:year "2022" :category :film :title "Set Costumer" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer" :images are-you-afraid-images}
+   {:year "2022" :category :film :title "Are you afraid of the dark" :client "Are you afraid of the dark" :production "Nickelodeon, Studio Pinewood" :role "Set Costumer" :images are-you-afraid-images}
    {:year "2022" :category :film :title "Set Costumer" :client "The best men" :production "Studio Pinewood" :role "Set Costumer"}
    {:year "2022-2023" :category :fashion :title "Asistente Personal del Diseñador" :client "José Jhan Rodriguez" :role "Assistant"}
    {:year "2021" :category :fashion :title "Diseño y Ejecución de Vestuario" :client "Corona Sunset" :role "Costume Designer"}
@@ -291,6 +338,10 @@
     [:span.text-sm.font-semibold.uppercase.tracking-wide
      {:class (if first-image "text-white" "text-gray-500")}
      (:year project)]]
+   (when (:production project)
+     [:p.text-sm.mb-1
+      {:class (if first-image "text-white" "text-gray-600")}
+      [:span.font-medium (:production project)]])
    [:h4.font-serif.text-xl.font-semibold.mb-2
     {:class (if first-image "text-white" "text-gray-900")}
     (:title project)]
@@ -298,10 +349,6 @@
      [:p.text-sm.mb-1
       {:class (if first-image "text-white" "text-gray-600")}
       [:span.font-medium "Director: "] (:director project)])
-   (when (:production project)
-     [:p.text-sm.mb-1
-      {:class (if first-image "text-white" "text-gray-600")}
-      [:span.font-medium "Producción: "] (:production project)])
    (when (:role project)
      [:p.text-xs.mt-2.uppercase.tracking-wide
       {:class (if first-image "text-white text-opacity-80" "text-gray-500")}
@@ -345,16 +392,45 @@
      [:div.flex-1.pl-8
       [project-card project colors has-images first-image on-click false]]]))
 
+(defn normalize-role [role]
+  (cond
+    (or (= role "Assistant") (= role "Asistente de vestuario") (= role "Asistente Personal del Diseñador") (= role "Asistente General"))
+    "Asistente"
+    (or (= role "Costume Director") (= role "Directora de Vestuario") (= role "Co-Costume Director") (= role "Costume Designer"))
+    "Director"
+    (or (= role "Fashion Stylist") (= role "Stylist"))
+    "Stylist"
+    (= role "Pre-Production")
+    "Coordinator"
+    (= role "Team Leader")
+    "Retail"
+    :else role))
+
+(defn get-unique-roles []
+  (->> projects-data
+       (map :role)
+       (filter some?)
+       (map normalize-role)
+       distinct
+       sort))
+
 (defn timeline-section []
   (let [selected-project (r/atom nil)
         expanded (r/atom false)
-        selected-filter (r/atom nil)
+        selected-category-filter (r/atom nil)
+        selected-role-filter (r/atom nil)
         total-projects (count projects-data)
-        first-quarter-count (Math/ceil (/ total-projects 4))]
+        first-quarter-count (Math/ceil (/ total-projects 4))
+        unique-roles (get-unique-roles)]
     (fn []
-      (let [filtered-projects (if @selected-filter
-                                 (filter #(= (:category %) @selected-filter) projects-data)
-                                 projects-data)
+      (let [filtered-projects (->> projects-data
+                                    (filter (fn [project]
+                                              (and
+                                               (or (nil? @selected-category-filter)
+                                                   (= (:category project) @selected-category-filter))
+                                               (or (nil? @selected-role-filter)
+                                                   (= (normalize-role (:role project)) @selected-role-filter)))))
+                                    seq)
             projects-to-show (if @expanded
                                 filtered-projects
                                 (take first-quarter-count filtered-projects))
@@ -367,31 +443,49 @@
            [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light.mb-8
             "Una carrera dedicada a la moda, el cine y el retail"]]
           
-          [:div.flex.flex-wrap.justify-center.gap-3.mb-12
-           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
-            {:class (if (nil? @selected-filter)
-                      "bg-gray-900 text-white hover:bg-gray-800"
-                      "bg-gray-200 text-gray-700 hover:bg-gray-300")
-             :on-click #(reset! selected-filter nil)}
-            "Todos"]
-           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
-            {:class (if (= @selected-filter :fashion)
-                      "bg-rose-500 text-white hover:bg-rose-600"
-                      "bg-rose-100 text-rose-700 hover:bg-rose-200")
-             :on-click #(reset! selected-filter :fashion)}
-            "Fashion"]
-           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
-            {:class (if (= @selected-filter :film)
-                      "bg-blue-500 text-white hover:bg-blue-600"
-                      "bg-blue-100 text-blue-700 hover:bg-blue-200")
-             :on-click #(reset! selected-filter :film)}
-            "Film"]
-           [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
-            {:class (if (= @selected-filter :retail)
-                      "bg-emerald-500 text-white hover:bg-emerald-600"
-                      "bg-emerald-100 text-emerald-700 hover:bg-emerald-200")
-             :on-click #(reset! selected-filter :retail)}
-            "Retail"]]
+          [:div.mb-12
+           [:div.flex.flex-wrap.justify-center.gap-3.mb-6
+            [:p.text-sm.font-semibold.text-gray-600.w-full.text-center.mb-2 "Filtrar por Categoría:"]
+            [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+             {:class (if (nil? @selected-category-filter)
+                       "bg-gray-900 text-white hover:bg-gray-800"
+                       "bg-gray-200 text-gray-700 hover:bg-gray-300")
+              :on-click #(reset! selected-category-filter nil)}
+             "Todos"]
+            [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+             {:class (if (= @selected-category-filter :fashion)
+                       "bg-rose-500 text-white hover:bg-rose-600"
+                       "bg-rose-100 text-rose-700 hover:bg-rose-200")
+              :on-click #(reset! selected-category-filter :fashion)}
+             "Fashion"]
+            [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+             {:class (if (= @selected-category-filter :film)
+                       "bg-blue-500 text-white hover:bg-blue-600"
+                       "bg-blue-100 text-blue-700 hover:bg-blue-200")
+              :on-click #(reset! selected-category-filter :film)}
+             "Film"]
+            [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300
+             {:class (if (= @selected-category-filter :retail)
+                       "bg-emerald-500 text-white hover:bg-emerald-600"
+                       "bg-emerald-100 text-emerald-700 hover:bg-emerald-200")
+              :on-click #(reset! selected-category-filter :retail)}
+             "Retail"]]
+           [:div.flex.flex-wrap.justify-center.gap-3
+            [:p.text-sm.font-semibold.text-gray-600.w-full.text-center.mb-2 "Filtrar por Posición:"]
+            [:button.px-6.py-2.rounded-lg.font-semibold.transition-all.duration-300.text-sm
+             {:class (if (nil? @selected-role-filter)
+                       "bg-gray-900 text-white hover:bg-gray-800"
+                       "bg-gray-200 text-gray-700 hover:bg-gray-300")
+              :on-click #(reset! selected-role-filter nil)}
+             "Todas"]
+            (for [role unique-roles]
+              ^{:key (str "role-filter-" role)}
+              [:button.px-4.py-2.rounded-lg.font-semibold.transition-all.duration-300.text-sm
+               {:class (if (= @selected-role-filter role)
+                         "bg-purple-500 text-white hover:bg-purple-600"
+                         "bg-purple-100 text-purple-700 hover:bg-purple-200")
+                :on-click #(reset! selected-role-filter role)}
+               role])]]
           
           (when (zero? visible-count)
             [:div.text-center.py-12

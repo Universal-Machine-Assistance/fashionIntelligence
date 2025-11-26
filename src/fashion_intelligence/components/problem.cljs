@@ -15,23 +15,23 @@
    [:div.max-w-5xl.mx-auto
     [:div.text-center.mb-16
      [:h2.font-serif.text-5xl.md:text-6xl.font-light.mb-6.text-gray-900
-      "La Inconsistencia Mata la Identidad"]
-     [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light
-      "Cada tienda habla un idioma diferente. No hay armonía, solo ruido."]]
+      "Cuando Necesitas Asesoramiento Personal"]
+     [:p.text-lg.text-gray-600.max-w-2xl.mx-auto.font-light.leading-relaxed
+      "A veces sientes que tu imagen no refleja quién realmente eres, o que necesitas una guía para expresar tu estilo único. No estás sola en esto."]]
     
     [:div.grid.md:grid-cols-3.gap-8
      [problem-item
       "/images/icons/vacio.svg"
-      "Sin Narrativa"
-      [:span "Vendedores talentosos sin guión. Cada uno cuenta una versión diferente de tu marca."]]
+      "Te Sientes Perdida"
+      [:span "Tienes un guardarropa lleno, pero nada que ponerte. Cada pieza cuenta una historia diferente, pero ninguna es realmente " [:em "tuya"] "."]]
      
      [problem-item
       "/images/icons/lentes.svg"
-      "Sin Visión"
-      [:span "Escaparates que decoran pero no " [:em "comunican"] ". Belleza sin propósito es olvido."]]
+      "Necesitas Claridad"
+      [:span "Sabes lo que te gusta, pero no sabes cómo combinarlo. Quieres verte bien, pero también quieres sentirte auténtica y confiada."]]
      
      [problem-item
       "/images/icons/alma.svg"
-      "Sin Alma"
-      [:span "Métricas que miden transacciones, no conexiones. Has vendido, pero ¿has impactado?"]]]]])
+      "Buscas Conexión"
+      [:span "No se trata solo de ropa, se trata de cómo quieres que te vean y cómo quieres sentirte. Quieres que tu estilo comunique quién eres realmente."]]]]])
 

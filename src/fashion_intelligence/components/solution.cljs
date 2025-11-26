@@ -10,29 +10,29 @@
   [:section.py-20.px-6.bg-gray-50
    [:div.max-w-6xl.mx-auto
     [:h2.font-serif.text-4xl.md:text-5xl.font-bold.text-center.mb-16.gradient-text
-     "La Solución: Data-Driven Retail"]
+     "La Solución: Estilismo Personalizado"]
     
     [:div.text-center.mb-12
-     [:p.text-xl.text-gray-600.max-w-4xl.mx-auto
-      "Natalie entra como "
-      [:strong "creadora de frameworks"]
-      ", no solo diseñadora. Transformo la intuición en "
-      [:strong "sistemas probados y replicables"]
-      " que aumentan tu rentabilidad sin aumentar tráfico."]]
+     [:p.text-xl.text-gray-600.max-w-4xl.mx-auto.leading-relaxed
+      "Trabajo contigo para descubrir y hacer brillar "
+      [:strong "tu personalidad única"]
+      ". No se trata de seguir tendencias, sino de crear un estilo que te represente auténticamente y te haga sentir "
+      [:strong "confiada y poderosa"]
+      " en cada ocasión."]]
     
     [:div.grid.md:grid-cols-3.gap-8
      [metric-card
       "100%"
-      "Decisiones Basadas en Datos"
-      "Cada cambio tiene un antes/después cuantificable"]
+      "Personalizado para Ti"
+      "Cada recomendación está diseñada específicamente para tu estilo de vida y personalidad"]
      
      [metric-card
-      "3x"
-      "Ticket Promedio"
-      "Optimización de bundles y cross-selling"]
+      "1:1"
+      "Atención Personalizada"
+      "Sesiones individuales donde exploramos juntas qué te hace sentir más tú"]
      
      [metric-card
-      "24/7"
-      "Sistemas Replicables"
-      "Tu equipo puede implementar sin depender de mí"]]]])
+      "∞"
+      "Estilo Auténtico"
+      "Un guardarropa que refleja quién eres y te da confianza en cualquier situación"]]]])
 

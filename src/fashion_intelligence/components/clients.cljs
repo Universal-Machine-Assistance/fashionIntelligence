@@ -43,6 +43,24 @@
    {:src "/images/clients/a_tiro_limpio/a_tiro_limpio_02.png"
     :alt "A Tiro Limpio - Costume Director"}])
 
+(def retail-portfolio-images
+  [{:src "/images/clients/alo/alo_01.jpeg"
+    :alt "Alo Yoga Blue Mall - Visual Merchandising"}
+   {:src "/images/clients/alo/alo_02.jpeg"
+    :alt "Alo Yoga Blue Mall - Visual Merchandising"}
+   {:src "/images/clients/alo/alo_03.jpeg"
+    :alt "Alo Yoga Blue Mall - Visual Merchandising"}
+   {:src "/images/clients/alo/alo_04.jpeg"
+    :alt "Alo Yoga Blue Mall - Visual Merchandising"}
+   {:src "/images/clients/alo/alo_05.jpeg"
+    :alt "Alo Yoga Blue Mall - Visual Merchandising"}
+   {:src "/images/clients/jumbo/jumbo_00.png"
+    :alt "Jumbo Madre - Catálogo Navidad"}
+   {:src "/images/clients/jumbo/jumbo_01.png"
+    :alt "Jumbo Madre - Catálogo Navidad"}
+   {:src "/images/clients/jumbo/jumbo_02.png"
+    :alt "Jumbo Madre - Catálogo Navidad"}])
+
 (defn image-modal [selected-image on-close]
   (when @selected-image
     [:div.fixed.inset-0.z-50.flex.items-center.justify-center.bg-black.bg-opacity-90.p-4
@@ -101,8 +119,8 @@
         
         [category-section
          "RETAIL"
-         "Visual merchandising, consultoría y gestión de equipos en retail"
-         []
+         "Visual merchandising, asesoría y gestión de equipos en retail"
+         retail-portfolio-images
          #(reset! selected-image %)]
         
         [:div.text-center.mt-12
