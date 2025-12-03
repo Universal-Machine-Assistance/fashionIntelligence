@@ -7,7 +7,7 @@
 1. **Connect to Vercel** (if not already connected):
    - Visit [https://vercel.com/dashboard](https://vercel.com/dashboard)
    - Click "Add New..." → "Project"
-   - Import from your GitHub repository: `gmolinart/fashion_intelligence`
+   - Import from your GitHub repository: `Universal-Machine-Assistance/fashionIntelligence`
 
 2. **Configure Project** (Vercel will auto-detect settings from `vercel.json`):
    - **Framework Preset**: Other

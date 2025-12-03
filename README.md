@@ -100,7 +100,7 @@ This project is configured for deployment on Vercel:
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/gmolinart/fashion_intelligence.git
+git remote add origin https://github.com/Universal-Machine-Assistance/fashionIntelligence.git
 git push -u origin main
 ```
 

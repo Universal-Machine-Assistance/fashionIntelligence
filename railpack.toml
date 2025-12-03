@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm run build"
+
+[apt]
+  packages = ["default-jdk", "libatomic1"]
+
