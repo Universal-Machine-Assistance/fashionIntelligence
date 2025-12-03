@@ -85,6 +85,7 @@
                     {:type "button"
                      :on-click #(swap! projects-to-show (fn [current] 
                                                            (min total-count (+ current 10))))}
-                    "Show More"]])])]]
-           (when @selected-project
-             [detail-section/project-detail-section selected-project #(reset! selected-project nil)])]])]))})))
+                    "Show More"]])])
+             (when @selected-project
+               [detail-section/project-detail-section @selected-project #(reset! selected-project nil)])]]
+           ]))})))
