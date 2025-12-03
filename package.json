@@ -6,7 +6,8 @@
     "dev": "shadow-cljs watch app",
     "build": "shadow-cljs release app",
     "clean": "rm -rf public/js .shadow-cljs",
-    "vercel-build": "npm install && shadow-cljs release app"
+    "vercel-build": "npm install && shadow-cljs release app",
+    "start": "npx serve public -s"
   },
   "dependencies": {
     "react": "^18.2.0",

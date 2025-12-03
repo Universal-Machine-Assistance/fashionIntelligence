@@ -15,11 +15,18 @@
                  (= (utils/normalize-role (:role project)) @role-filter))))
           projects))
 
+(defn sort-projects-by-images [projects]
+  (sort-by (fn [project]
+             (if (seq (:images project))
+               0 1))
+           projects))
+
 (defn portfolio-page []
   (let [selected-project (r/atom nil)
         selected-category-filter (r/atom nil)
         selected-role-filter (r/atom nil)
-        page-visible (r/atom false)]
+        page-visible (r/atom false)
+        projects-to-show (r/atom 10)]
     (r/create-class
      {:component-did-mount
       (fn []
@@ -30,8 +37,11 @@
               filtered-projects (filter-projects all-projects 
                                                  selected-category-filter 
                                                  selected-role-filter)
-              filtered-projects-vec (vec filtered-projects)
-              visible-count (count filtered-projects-vec)]
+              sorted-projects (sort-projects-by-images filtered-projects)
+              sorted-projects-vec (vec sorted-projects)
+              total-count (count sorted-projects-vec)
+              displayed-projects (take @projects-to-show sorted-projects-vec)
+              has-more (> total-count @projects-to-show)]
           [:div.portfolio-page-container
            {:class "opacity-100"
             :style {:transition "opacity 0.6s ease-in-out"
@@ -61,10 +71,20 @@
             [:div.w-full.flex.flex-col.items-center
              {:style {:min-height "100vh"
                      :position "relative"
-                     :z-index 10}}
-             (if (zero? visible-count)
+                     :z-index 10
+                     :padding-top "0"}}
+             (if (zero? total-count)
                [:div.text-center.py-12
                 [:p.text-gray-500.text-lg "No hay proyectos en esta categoría."]]
-               [grid/projects-grid filtered-projects-vec page-visible])]]
+               [:<>
+                [grid/projects-grid displayed-projects page-visible]
+                (when has-more
+                  [:div.w-full.flex.justify-center.my-8
+                   {:style {:z-index 200}}
+                   [:button.px-8.py-3.bg-gray-900.text-white.rounded-lg.font-medium.hover:bg-gray-800.transition-colors
+                    {:type "button"
+                     :on-click #(swap! projects-to-show (fn [current] 
+                                                           (min total-count (+ current 10))))}
+                    "Show More"]])])]]
            (when @selected-project
-             [detail-section/project-detail-section selected-project #(reset! selected-project nil)])]))})))
+             [detail-section/project-detail-section selected-project #(reset! selected-project nil)])]])]))})))
