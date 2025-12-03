@@ -6,9 +6,40 @@
     <title>Natalie Rodríguez | Fashion Stylist & Retail Curation</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <style>
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-sans { font-family: 'Inter', sans-serif; }
+        .display-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            width: 100%;
+        }
+        .z-100 {
+            z-index: 100;
+        }
+        .typewriter-text {
+            font-family: 'Special Elite', 'Courier New', monospace;
+            color: #000;
+        }
+        .handmade-label {
+            font-family: 'Special Elite', 'Courier New', monospace;
+            display: inline-block;
+            position: relative;
+        }
+        .handmade-label::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid #000;
+            opacity: 0.3;
+            transform: rotate(0.5deg);
+        }
         .hero-bg {
             background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
         }
@@ -25,6 +56,30 @@
         }
         .gold-accent { color: #b8860b; }
         .text-stylish { letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.75rem; }
+        body {
+            background-image: url('/images/paper_texture.jpg');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-size: auto;
+        }
+        #app {
+            background-color: transparent;
+        }
+        section {
+            background-color: transparent;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(250, 249, 247, 0.95) 0%, rgba(245, 243, 240, 0.95) 100%);
+        }
+        .portfolio-page-container {
+            position: relative;
+        }
+        .page-container {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
